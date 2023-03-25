@@ -41,7 +41,7 @@ curl.exe -k %proxy% %host%/Capture/osinfo.vbs --output "osinfo.vbs"
 nircmd.exe savescreenshotfull "%username%@%computername% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
 cscript.exe /nologo osinfo.vbs > "%username%@%computername%.txt"
 "%appdata%\Ookla\Speedtest CLI\speedtest.exe" | echo YES 
-"%appdata%\Ookla\Speedtest CLI\speedtest.exe" --accept-gdpr > "%username%@%computername%.txt"
+"%appdata%\Ookla\Speedtest CLI\speedtest.exe" --accept-gdpr >> "%username%@%computername%.txt"
 echo      =================== >> "%username%@%computername%.txt"
 echo      =================== >> "%username%@%computername%.txt"
 
