@@ -12,7 +12,7 @@ taskkill /f /im httpd.exe
 "%environment%\nircmd.exe" execmd rmdir /s /q "%appdata%\Ookla"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%environment%\Win32"
 "%environment%\nircmd.exe" execmd rmdir /s /q "C:\Program Files\RDP Wrapper"
-"%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\apache2"
+"%environment%\nircmd.exe" execmd rmdir /s /q  "C:\apache2"
 "%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\7-Zip"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\nircmd.exe"
 Taskkill /f /im winrun.exe
