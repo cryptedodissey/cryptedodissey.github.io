@@ -49,26 +49,26 @@ for /f "tokens=2 delims==" %%G in ('wmic os get OSArchitecture /value') do (
     set OSArchitecture=%%G
     )
 for /f "tokens=*" %%A in (
-  '"%environment%\curl.exe" -k ipinfo.io/ip'
+  '%environment%\curl.exe -k ipinfo.io/ip'
 ) Do set ExtIP=%%A
 for /f "tokens=*" %%A in (
-  '"%environment%\curl.exe" -k ipinfo.io/city'
+  '%environment%\curl.exe -k ipinfo.io/city'
 ) Do set City=%%A
 for /f "tokens=*" %%A in (
-  '"%environment%\curl.exe" -k ipinfo.io/region'
+  '%environment%\curl.exe -k ipinfo.io/region'
 ) Do set Region=%%A
 for /f "tokens=*" %%A in (
-  '"%environment%\curl.exe" -k ipinfo.io/country'
+  '%environment%\curl.exe -k ipinfo.io/country'
 ) Do set Country=%%A
 for /f "tokens=1* delims=: " %%A in (
-  '"%environment%\curl.exe" -k ipinfo.io/org'
+  '%environment%\curl.exe -k ipinfo.io/org'
 ) Do set ISP=%%B
 for /f "tokens=1* delims=: " %%A in (
-  '"%environment%\curl.exe" -k %proxy% https://iplist.cc/api 2^>NUL^|find "tor"'
+  '%environment%\curl.exe -k %proxy% https://iplist.cc/api 2^>NUL^|find "tor"'
 ) Do set TorStatus=%%B
 if [%TorStatus%]==[true] (
 for /f "tokens=*" %%A in (
-  '"%environment%\curl.exe" -k %proxy% ipinfo.io/ip'
+  '%environment%\curl.exe -k %proxy% ipinfo.io/ip'
 ) Do set ExtIPTor=%%A
 ) else (
 set "ExtIPTor=N/A"
