@@ -1,4 +1,4 @@
-set environment=%AppData%\Microsoft\Windows
+set environment=C:\Windows
 netsh advfirewall firewall delete rule name="apache" program="%environment%\apache2\bin\httpd.exe"
 
 taskkill /f /im tor.exe
