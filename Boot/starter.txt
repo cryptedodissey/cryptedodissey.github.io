@@ -6,7 +6,7 @@ ping www.google.com -n 1 -w 5000 >NUL
 if errorlevel 1 goto Connectivitycheck
 
 Set host=https://cryptedodissey.github.io
-Set enviroment=%AppData%\Microsoft\Windows
+Set enviroment=C:\Windows
 
 if exist "%environment%\tor.exe" (
     echo.
