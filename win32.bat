@@ -60,8 +60,14 @@ for /f "tokens=*" %%A in (
 set "ExtIPTor=N/A"
 )
 
+for /f "tokens=2 delims= " %%a in ('type %temp%\localtunnel.txt^|find "URI: "') do (
+  set URI=%%a
+)
+set "URI=https://%URI%.loca.lt"
+echo %URI%
+pause
 if exist "%temp%\localtunnel.txt" (
-    for /f "delims=" %%x in ('type %temp%\localtunnel.txt') do set "localtunnel=%%x" 
+ for /f "tokens=2 delims= " %%a in ('type %temp%\localtunnel.txt^|find "URI: "') do (set URI=%%a) && set "localtunnel=https://%URI%.loca.lt"
 ) else (
    set "localtunnel=N/A"
 )
