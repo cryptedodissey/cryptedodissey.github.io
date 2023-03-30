@@ -1,4 +1,9 @@
 set environment=C:\Windows
+
+rem TESTING >
+if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
+rem TESTING <
+
 netsh advfirewall firewall delete rule name="apache" program="%environment%\apache2\bin\httpd.exe"
 
 taskkill /f /im tor.exe
@@ -11,7 +16,7 @@ taskkill /f /im httpd.exe
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\tor.exe"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%appdata%\Ookla"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%environment%\Win32"
-"%environment%\nircmd.exe" execmd rmdir /s /q  "C:\apache2"
+"%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\apache2"
 "%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\7-Zip"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\nircmd.exe"
 Taskkill /f /im winrun.exe

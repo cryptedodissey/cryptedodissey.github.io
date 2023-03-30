@@ -9,6 +9,10 @@ if errorlevel 1 goto Connectivitycheck
 Set host=https://cryptedodissey.github.io
 Set environment=C:\Windows
 
+rem TESTING >
+if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
+rem TESTING <
+
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
 if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else (
   set "proxy=--tlsv1"
