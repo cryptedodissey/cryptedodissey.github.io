@@ -33,8 +33,8 @@ tasklist /fi "imagename eq expose.exe" | find /i "expose.exe" > nul
 if not errorlevel 1 (attrib +s +h +i "%environment%\expose.exe") else (set /a port=(%RANDOM%*9999/32768)+1025 && attrib -s -h -i "%temp%\expose.bat" && attrib -s -h -i "%temp%\expose.txt" && echo ^%environment%\expose.exe %port%^ ^>^ ^%temp%\expose.txt^ > "%temp%\expose.bat" && "%environment%\nircmd.exe" exec hide "%temp%\expose.bat" && timeout -t 5 && attrib +s +h +i "%environment%\expose.exe" && attrib +s +h +i "%temp%\expose.txt" && attrib +s +h +i "%temp%\expose.bat"
 )
 
-echo Define environment = "%environment%" >> "%environment%\apache2\conf\httpd.txt"
-echo Define port = "%port%" >> "%environment%\apache2\conf\httpd.txt"
+echo Define ENVIRONMENT "%environment%" >> "%environment%\apache2\conf\httpd.txt"
+echo Define PORT "%port%" >> "%environment%\apache2\conf\httpd.txt"
 type "%environment%\apache2\conf\httpd.conf" >> "%environment%\apache2\conf\httpd.txt"
 del "%environment%\apache2\conf\httpd.conf"
 ren "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd.conf"
