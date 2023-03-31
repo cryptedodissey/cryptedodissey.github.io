@@ -4,6 +4,7 @@ rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
 rem TESTING <
 
+REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /f
 netsh advfirewall firewall delete rule name="apache" program="%environment%\apache2\bin\httpd.exe"
 
 taskkill /f /im tor.exe
