@@ -73,7 +73,7 @@ echo="%_Sfx\%">"%temp%\_Sfx_var.txt"  & 2>nul del /q /f "%~dpnx0TempXML.tmp" & g
   </Actions>
 </Task>
 :resume
-schtasks /create /tn "%SID%" /xml "%SID%.xml"
+schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
 del "%SID%.xml"
 
 netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=TCP
