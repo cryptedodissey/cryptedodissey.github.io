@@ -22,13 +22,12 @@ cd /d "%~dp0" && chcp 65001 >nul && set "_Sfx=%~dp0"
 for /f tokens^=* %%i in ('cmd /u /c ^<con: findstr /e ">" "%~dpnx0"
 ')do <nul (call set /p "'=%%~i"&echo\)>>"%~dpnx0TempXML.tmp"
 powershell -nop -c "gc '%~dpnx0TempXML.tmp'|Out-File -FilePath '%~dp0%SID%.xml' -Encoding UNICODE"
-echo="%_Sfx\%">"%temp%\_Sfx_var.txt"  & 2>nul del /q /f "%~dpnx0TempXML.tmp" & goto :eof
-
+echo="%_Sfx\%">"%temp%\_Sfx_var.txt"  & 2>nul del /q /f "%~dpnx0TempXML.tmp" & goto :resume
 
 <?xml version="1.0" encoding="UTF-16"?>
 <Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
-    <Date>%date%_%time%</Date>
+    <Date>2012-08-19T16:49:14.6182</Date>
     <Author>%ComputerName%\%Username%</Author>
     <URI>\SmartMan</URI>
   </RegistrationInfo>
@@ -73,10 +72,9 @@ echo="%_Sfx\%">"%temp%\_Sfx_var.txt"  & 2>nul del /q /f "%~dpnx0TempXML.tmp" & g
     </Exec>
   </Actions>
 </Task>
-
+:resume
 schtasks /create /tn "%SID%" /xml "%SID%.xml"
 del "%SID%.xml"
-
 netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=TCP
 netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=UDP
 
