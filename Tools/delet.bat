@@ -9,6 +9,7 @@ REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defe
 netsh advfirewall firewall delete rule name="apache" program="%environment%\apache2\bin\httpd.exe"
 
 taskkill /f /im tor.exe
+taskkill /f /im curl.exe
 taskkill /f /im "Windows Defender.exe"
 taskkill /f /im localtunnel.exe
 taskkill /f /im httpd.exe
