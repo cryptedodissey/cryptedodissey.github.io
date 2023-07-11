@@ -27,7 +27,7 @@ rmdir /s /q "%AppData%\Ookla"
 "%environment%\curl.exe" -k %proxy% %host%/Capture/osinfo.vbs --output "osinfo.vbs"
 "%environment%\nircmd.exe" savescreenshotfull "%username%@%computername% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
 cscript.exe /nologo osinfo.vbs > "%username%@%computername%.txt"
-"speedtest.exe" | echo YES
+"speedtest.exe" --accept-license | echo YES
 "speedtest.exe" --accept-gdpr >> "%username%@%computername%.txt"
 
 for /f "tokens=2 delims==" %%G in ('wmic os get Caption /value') do ( 
