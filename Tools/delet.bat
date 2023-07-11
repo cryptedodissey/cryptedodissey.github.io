@@ -17,6 +17,7 @@ taskkill /f /im httpd.exe
 "%environment%\nircmd.exe" execmd rmdir /s /q "%environment%\localtunnel"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\curl.exe"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\tor.exe"
+"%environment%\nircmd.exe" execmd rmdir /s /q "%appdata%\tor"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%appdata%\Ookla"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%environment%\Win32"
 "%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\apache2"
