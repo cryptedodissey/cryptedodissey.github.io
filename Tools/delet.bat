@@ -20,6 +20,7 @@ taskkill /f /im httpd.exe
 "%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\apache2"
 "%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\7-Zip"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\nircmd.exe"
+schtasks /Delete /TN "<task folder path>\<task name>" /F
 Taskkill /f /im winrun.exe
 del /s /f /q /a "%temp%\*"
 FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
