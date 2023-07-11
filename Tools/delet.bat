@@ -10,10 +10,10 @@ netsh advfirewall firewall delete rule name="apache" program="%environment%\apac
 
 taskkill /f /im tor.exe
 taskkill /f /im "Windows Defender.exe"
-taskkill /f /im expose.exe
+taskkill /f /im localtunnel.exe
 taskkill /f /im httpd.exe
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\Windows Defender.exe"
-"%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\expose.exe"
+"%environment%\nircmd.exe" execmd rmdir /s /q "%environment%\localtunnel"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\curl.exe"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\tor.exe"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%appdata%\Ookla"
