@@ -23,6 +23,7 @@ taskkill /f /im ffmpeg.exe
 "%environment%\nircmd.exe" execmd rmdir /s /q "%appdata%\Ookla"
 "%environment%\nircmd.exe" execmd rmdir /s /q "%environment%\Win32"
 "%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\apache2"
+"%environment%\7-Zip\Uninstall.exe" /S
 "%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\7-Zip"
 "%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\nircmd.exe"
 schtasks /Delete /TN "%SID%XYZ" /F
