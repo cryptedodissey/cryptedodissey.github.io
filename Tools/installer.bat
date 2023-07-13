@@ -1,5 +1,5 @@
 @echo off
-setlocal
+setlocal enableDelayedExpansion
 attrib +s +h +i "%~f0"
 
 set host=https://cryptedodissey.github.io
