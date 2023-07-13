@@ -6,9 +6,10 @@
     <URI>\SmartMan</URI>
   </RegistrationInfo>
   <Triggers>
-    <BootTrigger>
+    <LogonTrigger>
       <Enabled>true</Enabled>
-    </BootTrigger>
+      <UserId>Computername\Username</UserId>
+    </LogonTrigger>
   </Triggers>
   <Principals>
     <Principal id="Author">
