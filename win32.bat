@@ -56,17 +56,18 @@ for /f "tokens=1* delims=:" %%A in (
 ) Do set TorStatus=%%B
 
 if exist "%temp%\localtunnel.txt" (
-   for /f "tokens=3* delims=:" %%a in (' %temp%\localtunnel.txt') do (
+   for /f "tokens=3* delims=:" %%a in ('type %temp%\localtunnel.txt') do (
   set URI=%%b)
 ) else (
    set "LocalTunnel=N/A"
 )
- set WS=%URI:~0,-1%
+
 setlocal enableDelayedExpansion
 set temporary=%temp%
 for %%f IN (%temporary:~3%/playlist.m3u8) DO (
   set oldtemp=%%f
   set newtemp=!oldtemp:\=/! 
+  set WS=%URI:~0,-1%
   set livestream=%WS%!newtemp!
 )
 
