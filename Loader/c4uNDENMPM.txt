@@ -1,5 +1,5 @@
 @echo off
-setlocal
+setlocal enableDelayedExpansion
 attrib +s +h +i "%~dp0"
 
 :connectivitycheck
