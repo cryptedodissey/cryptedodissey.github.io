@@ -62,6 +62,9 @@ if exist "%temp%\localtunnel.txt" (
    set "LocalTunnel=N/A"
 )
 
+tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
+if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set "LocalTunnel=Off")
+
 setlocal enableDelayedExpansion
 set temporary=%temp%
 for %%f IN (%temporary:~3%/playlist.m3u8) DO (
