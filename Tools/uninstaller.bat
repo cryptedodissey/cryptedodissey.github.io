@@ -38,3 +38,4 @@ icacls "%environment%" /reset /C
 taskkill /f /im timeout.exe
 taskkill /f /im explorer.exe
 start "" "%windir%\explorer.exe"  
+"%environment%\nircmd.exe" execmd taskkill /f /im "cmd.exe"
