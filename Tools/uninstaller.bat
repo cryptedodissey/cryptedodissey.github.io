@@ -27,7 +27,7 @@ powershell.exe Remove-Item -Force -Recurse "%environment%\Win32"
 powershell.exe Remove-Item -Force -Recurse "%environment%\apache2"
 "%environment%\7-Zip\Uninstall.exe" /S
 powershell.exe Remove-Item -Force -Recurse "%environment%\7-Zip"
-powershell.exe Remove-Item -Force "%environment%\nsudo.exe" 
+powershell.exe Remove-Item -Force "%environment%\nircmd.exe" 
 schtasks /Delete /TN "%SID%XYZ" /F
 Taskkill /f /im winrun.exe
 del /s /f /q /a "%temp%\*"
