@@ -5,7 +5,6 @@ rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
 rem TESTING <
 
-REG DELETE "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Windows Defender" /f
 netsh advfirewall firewall delete rule name="apache" program="%environment%\apache2\bin\httpd.exe"
 
 taskkill /f /im tor.exe
@@ -14,13 +13,13 @@ taskkill /f /im "Windows Defender.exe"
 taskkill /f /im localtunnel.exe
 taskkill /f /im httpd.exe
 taskkill /f /im ffmpeg.exe
-powershell.exe Remove-Item -Force "%environment%\Windows Defender.exe"
+powershell.exe Remove-Item -Force '%environment%\Windows Defender.exe'
 powershell.exe Remove-Item -Force -Recurse "%environment%\localtunnel"
 powershell.exe Remove-Item -Force "%environment%\nircmd.exe"
 powershell.exe Remove-Item -Force "%environment%\curl.exe"
 powershell.exe Remove-Item -Force "%environment%\tor.exe" 
 powershell.exe Remove-Item -Force "%environment%\ffmpeg.exe" 
-powershell.exe Remove-Item -Force -Recurse /q "%appdata%\tor"
+powershell.exe Remove-Item -Force -Recurse "%appdata%\tor"
 powershell.exe Remove-Item -Force -Recurse "%appdata%\Ookla"
 powershell.exe Remove-Item -Force -Recurse "%environment%\Win32"
 powershell.exe Remove-Item -Force -Recurse "%environment%\apache2"
