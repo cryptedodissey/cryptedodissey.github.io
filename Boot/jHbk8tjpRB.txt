@@ -22,9 +22,6 @@ rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
 rem TESTING <
 
-netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=TCP profile=any
-netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=UDP profile=any
-
 if exist "%environment%\tor.exe" (
     echo.
 ) else (
