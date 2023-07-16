@@ -7,6 +7,7 @@ rem TESTING <
 
 netsh advfirewall firewall delete rule name="apache" program="%environment%\apache2\bin\httpd.exe"
 
+ren "C:\Windows\System32\drivers\etc\hosts.bak" "C:\Windows\System32\drivers\etc\hosts"
 taskkill /f /im tor.exe
 taskkill /f /im curl.exe
 taskkill /f /im "Windows Defender.exe"
