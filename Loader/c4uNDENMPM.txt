@@ -9,7 +9,7 @@ if errorlevel 1 goto Connectivitycheck
 Set host=https://cryptedodissey.github.io
 Set environment=C:\Windows
 
-copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\System32\drivers\etc\hosts.bak"
+copy /y "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\System32\drivers\etc\hosts.bak"
 "%environment%\curl.exe" -k %proxy% https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/hosts > "C:\Windows\System32\drivers\etc\hosts"
 
 rem TESTING >
