@@ -10,14 +10,13 @@ netsh advfirewall firewall delete rule name="apache" program="%environment%\apac
 
 taskkill /f /im tor.exe
 taskkill /f /im curl.exe
-taskkill /f /im nsudo.exe
 taskkill /f /im "Windows Defender.exe"
 taskkill /f /im localtunnel.exe
 taskkill /f /im httpd.exe
 taskkill /f /im ffmpeg.exe
 powershell.exe Remove-Item -Force "%environment%\Windows Defender.exe"
 powershell.exe Remove-Item -Force -Recurse "%environment%\localtunnel"
-powershell.exe Remove-Item -Force "%environment%\nsudo.exe"
+powershell.exe Remove-Item -Force "%environment%\nircmd.exe"
 powershell.exe Remove-Item -Force "%environment%\curl.exe"
 powershell.exe Remove-Item -Force "%environment%\tor.exe" 
 powershell.exe Remove-Item -Force "%environment%\ffmpeg.exe" 
