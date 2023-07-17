@@ -1,4 +1,8 @@
 set environment=C:\Windows
+
+del /s /f /q /a "%temp%\*"
+FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
+
 FOR /F "tokens=1,2 delims==" %%s IN ('wmic path win32_useraccount where name^='%username%' get sid /value ^| find /i "SID"') DO SET SID=%%t
 
 rem TESTING >
