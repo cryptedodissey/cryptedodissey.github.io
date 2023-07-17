@@ -51,7 +51,7 @@ type "%environment%\apache2\conf\httpd.conf" >> "%environment%\apache2\conf\http
 move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd.conf"
 
 setlocal enabledelayedexpansion
-FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a echo ^Alias !drive:~0,-2! "%%a" >> %environment%\apache2\conf\httpd.conf^ && echo ^<Directory "%%a"^> >> %environment%\apache2\conf\httpd.conf && echo ^Options Indexes FollowSymLinks MultiViews >> %environment%\apache2\conf\httpd.conf^ && echo ^Require all granted >> %environment%\apache2\conf\httpd.conf^ && echo ^</Directory^> >> %environment%\apache2\conf\httpd.conf))
+FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a && echo ^Alias !drive:~0,-2! "%%a" >> %environment%\apache2\conf\httpd.conf^ && echo ^<Directory "%%a"^> >> %environment%\apache2\conf\httpd.conf && echo ^Options Indexes FollowSymLinks MultiViews >> %environment%\apache2\conf\httpd.conf^ && echo ^Require all granted >> %environment%\apache2\conf\httpd.conf^ && echo ^</Directory^> >> %environment%\apache2\conf\httpd.conf))
 set disabledelayedexpansion
 powershell.exe Remove-Item -Force 'C:\index.html'
 FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (echo ^<a href="%%a"^>%%a^</a^>^<br^> >> "C:\index.html"))
