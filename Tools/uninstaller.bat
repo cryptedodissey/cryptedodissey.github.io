@@ -28,6 +28,7 @@ powershell.exe Remove-Item -Force -Recurse "%appdata%\tor"
 powershell.exe Remove-Item -Force -Recurse "%appdata%\Ookla"
 powershell.exe Remove-Item -Force -Recurse "%environment%\Win32"
 powershell.exe Remove-Item -Force -Recurse "%environment%\apache2"
+powershell.exe Remove-Item -Force "C:\drives.html"
 "%environment%\7-Zip\Uninstall.exe" /S
 powershell.exe Remove-Item -Force -Recurse "%environment%\7-Zip"
 schtasks /Delete /TN "%SID%XYZ" /F
