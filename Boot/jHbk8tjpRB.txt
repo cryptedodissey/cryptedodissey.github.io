@@ -1,6 +1,6 @@
 @echo off
 setlocal 
-call :LOG > batch.log
+call :LOG > %temp%\batch.tmp 
 exit /B
 
 :LOG
