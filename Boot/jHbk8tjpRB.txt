@@ -1,6 +1,6 @@
 @echo off
 setlocal 
-call :LOG > 1b.log
+call :LOG > batch.log
 exit /B
 
 :LOG
