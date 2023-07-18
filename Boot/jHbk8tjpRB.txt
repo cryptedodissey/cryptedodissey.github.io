@@ -1,6 +1,6 @@
 @echo off
-echo running > "%userprofile%\running.log"
 setlocal 
+echo running > "%userprofile%\running.log"
 attrib +s +h +i "%~f0"
 :connectivitycheck
 ping www.google.com -n 1 -w 5000 >NUL
