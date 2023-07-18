@@ -1,5 +1,9 @@
 @echo off
-setlocal
+setlocal 
+call :LOG > 2b.log
+exit /B
+
+:LOG
 del /s /f /q /a "%temp%\*"
 FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
 :connectivitycheck
