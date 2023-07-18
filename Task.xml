@@ -7,10 +7,6 @@
   </RegistrationInfo>
    <Triggers>
     <LogonTrigger>
-       <Repetition>
-        <Interval>PT5M</Interval>
-        <StopAtDurationEnd>false</StopAtDurationEnd>
-      </Repetition>
       <Enabled>true</Enabled>
       <UserId>Computername\Username</UserId>
     </LogonTrigger>
