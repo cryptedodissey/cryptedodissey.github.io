@@ -5,6 +5,7 @@
     <Author>Author</Author>
     <URI>\SmartMan</URI>
   </RegistrationInfo>
+   <Triggers>
     <LogonTrigger>
        <Repetition>
         <Interval>PT5M</Interval>
