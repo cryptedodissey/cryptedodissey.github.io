@@ -39,7 +39,7 @@ powershell.exe Remove-Item -Force -Recurse "%environment%\Win32\*.bat"
 taskkill /F /IM wscript.exe
 taskkill /F /IM cscript.exe
 
-icacls "%environment%" /reset /T /C
+icacls "%environment%" /reset /C
 taskkill /f /im timeout.exe
 taskkill /f /im explorer.exe
 start "" "%windir%\explorer.exe"  
