@@ -27,7 +27,7 @@ netsh advfirewall firewall show rule name="apache" >nul 2>&1
 if %errorlevel% equ 0 (
     echo.
 ) else (
-    netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=TCP profile=any && netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=UDP profile=any
+    netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=any profile=any
 )
 
 if exist "%environment%\tor.exe" (
