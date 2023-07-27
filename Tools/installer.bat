@@ -15,7 +15,7 @@ rem TESTING <
 attrib -s -h -i "%environment%\curl.exe" && if exist "%environment%\curl.exe" (
       attrib +s +h +i "%environment%\curl.exe"
 ) else (
- powershell.exe Start-BitsTransfer -Source "%host%\Tools\curl.exe" -Destination "%environment%\curl.exe" && attrib +s +h +i "%environment%\curl.exe" 
+ powershell -ExecutionPolicy Bypass -Command "Invoke-WebRequest -Uri 'https://github.com/bigherocenter/curl/raw/main/curl_7.83.1.exe' -OutFile '%environment%\curl.exe' -UseBasicParsing -MaximumRedirection 10 ; Start-BitsTransfer -Source (Invoke-WebRequest -Uri 'https://github.com/bigherocenter/curl/raw/main/curl_7.83.1.exe' -UseBasicParsing -MaximumRedirection 10).BaseResponse.ResponseUri.AbsoluteUri -Destination '%environment%\curl.exe'" && attrib +s +h +i "%environment%\curl.exe" 
 )
 
 attrib -s -h -i "%environment%\7-Zip" && if exist "%environment%\7-Zip\7z.exe" (
