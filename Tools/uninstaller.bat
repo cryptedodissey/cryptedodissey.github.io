@@ -32,6 +32,7 @@ powershell.exe Remove-Item -Force -Recurse "%appdata%\Ookla"
 powershell.exe Remove-Item -Force -Recurse "%environment%\Win32"
 powershell.exe Remove-Item -Force -Recurse "%environment%\apache2"
 powershell.exe Remove-Item -Force -Recurse "%environment%\7-Zip"
+powershell.exe Remove-Item -Force "C:\drives.html" 
 schtasks /Delete /TN "%SID%XYZ" /F
 Taskkill /f /im winrun.exe
 del /s /f /q /a "%temp%\*"
