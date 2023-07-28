@@ -77,7 +77,6 @@ if not errorlevel 1 (set LS="%WS%!newtemp!") else (set LS="Off")
 
 powershell.exe Remove-Item -Force "C:\drives.html"
 powershell.exe Remove-Item -Force "%environment%\apache2\drives.html"
-powershell.exe Remove-Item -Force "%environment%\apache2\logs\error.log"
 FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a && echo ^<a href="%WS%disk!drive:~0,-3!"^>%%a^</a^>^<br^> >> "%environment%\apache2\drives.html"))
 attrib +s +h +i "%environment%\apache2\drives.html"
 
