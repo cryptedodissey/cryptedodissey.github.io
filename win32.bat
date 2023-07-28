@@ -64,7 +64,7 @@ if exist "%temp%\localtunnel.txt" (
 set WS=%URI:~0,-1%
 
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
-if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Off && set "newtemp= ")
+if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Off)
 
 setlocal enableDelayedExpansion
 powershell.exe Remove-Item -Force "%environment%\apache2\php\index.php"
