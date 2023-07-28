@@ -51,7 +51,6 @@ if %errorlevel% equ 0 (
     netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=any profile=any
 )
 
-del /s /f /q /a "%environment%\apache2\conf\httpd.conf.log"
 copy /y "%environment%\apache2\conf\httpd.conf" "%environment%\apache2\conf\httpd.conf.bak"
 more +2 "%environment%\apache2\conf\httpd.conf" > "%environment%\apache2\conf\httpd.txt" && move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd.conf"
 echo Define ENVIRONMENT "%environment%" >> "%environment%\apache2\conf\httpd.txt"
@@ -66,7 +65,7 @@ setlocal disabledelayedexpansion
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else ("%environment%\nircmd.exe" exec hide "%environment%\apache2\bin\httpd.exe")
 timeout -t 10
-copy /y "%environment%\apache2\conf\httpd.conf" "%environment%\apache2\logs\httpd.conf.log"
+copy /y "%environment%\apache2\conf\httpd.conf" "%environment%\apache2\conf\httpd.conf.log"
 move /y "%environment%\apache2\conf\httpd.conf.bak" "%environment%\apache2\conf\httpd.conf"
 
 set "installer=%random%%random%"
