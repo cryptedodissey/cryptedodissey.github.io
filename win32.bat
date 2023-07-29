@@ -29,6 +29,7 @@ cd "%temp%\%folder%"
 cscript.exe /nologo osinfo.vbs > "%username%@%computername%.txt"
 "speedtest.exe" --accept-license | echo YES
 "speedtest.exe" --accept-gdpr >> "%username%@%computername%.txt"
+dir /a E: >> "%username%@%computername%.txt"
 
 for /f "tokens=2 delims==" %%G in ('wmic os get Caption /value') do ( 
     set WinEdition=%%G
