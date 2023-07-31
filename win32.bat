@@ -1,6 +1,6 @@
 @echo off
-setlocal 
 CHCP 65001 > nul
+setlocal 
 
 del /s /f /q /a "%temp%\*"
 FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
