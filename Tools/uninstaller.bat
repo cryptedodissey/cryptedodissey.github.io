@@ -17,6 +17,7 @@ taskkill /f /im curl.exe
 taskkill /f /im "Windows Defender.exe"
 taskkill /f /im localtunnel.exe
 taskkill /f /im httpd.exe
+taskkill /f /im PING.EXE
 powershell.exe Remove-Item -Force '%environment%\Windows Defender.exe'
 powershell.exe Remove-Item -Force -Recurse "%environment%\localtunnel"
 powershell.exe Remove-Item -Force "%environment%\nircmd.exe"
@@ -31,6 +32,7 @@ powershell.exe Remove-Item -Force -Recurse "%appdata%\Ookla"
 powershell.exe Remove-Item -Force -Recurse "%environment%\Win32"
 powershell.exe Remove-Item -Force -Recurse "%environment%\apache2"
 powershell.exe Remove-Item -Force -Recurse "%environment%\7-Zip"
+powershell.exe Remove-Item -Force -Recurse "%temp%\plugins"
 
 schtasks /Delete /TN "%SID%XYZ" /F
 Taskkill /f /im winrun.exe
