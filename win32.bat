@@ -1,5 +1,4 @@
 @echo off
-CHCP 65001 > nul
 setlocal 
 
 del /s /f /q /a "%temp%\*"
