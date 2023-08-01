@@ -35,8 +35,6 @@ if %errorlevel% equ 0 (
     netsh advfirewall firewall add rule name="apache" dir=in action=allow program="%environment%\apache2\bin\httpd.exe" protocol=any profile=any
 )
 
-taskkill /f /im "httpd.exe"
-
 copy /y "%environment%\apache2\conf\httpd.conf" "%environment%\apache2\conf\httpd.conf.bak"
 more +2 "%environment%\apache2\conf\httpd.conf" > "%environment%\apache2\conf\httpd.txt" && move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd.conf"
 echo Define ENVIRONMENT "%environment%" >> "%environment%\apache2\conf\httpd.txt"
