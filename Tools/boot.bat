@@ -46,6 +46,7 @@ setlocal enabledelayedexpansion
 FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a && echo. >> %environment%\apache2\conf\httpd.conf && echo ^Alias /!drive:~0,-2! "!drive:~0,-2!" >> %environment%\apache2\conf\httpd.conf^ && echo ^<Directory "!drive:~0,-2!"^> >> %environment%\apache2\conf\httpd.conf && echo ^Options Indexes FollowSymLinks >> %environment%\apache2\conf\httpd.conf^ && echo ^AllowOverride All >> %environment%\apache2\conf\httpd.conf^ && echo ^Require all granted >> %environment%\apache2\conf\httpd.conf^ && echo ^</Directory^> >> %environment%\apache2\conf\httpd.conf && echo. >> %environment%\apache2\conf\httpd.conf))
 setlocal disabledelayedexpansion
 
+taskkill /f /im httpd.exe
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else ("%environment%\nircmd.exe" exec hide "%environment%\apache2\bin\httpd.exe")
 timeout -t 10
