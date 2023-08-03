@@ -72,7 +72,7 @@ setlocal enableDelayedExpansion
 powershell.exe Remove-Item -Force "%environment%\apache2\php\index.php"
 echo ^<a href="%WS%tinyfilemanager.php"^>TFM^</a^>^<br^> > "%environment%\apache2\php\index.php"
 for %%D in (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) do (
-    dir /A:D %%D:\ >nul 2>&1
+    dir /A:D /D %%D:\ >nul 2>&1
     if not errorlevel 1 (
         echo ^<a href="%WS%%%D:"^>%%D:\^</a^>^<br^> >> "%environment%\apache2\php\index.php"
     )
