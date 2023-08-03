@@ -43,7 +43,12 @@ type "%environment%\apache2\conf\httpd.conf" >> "%environment%\apache2\conf\http
 move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd.conf"
 
 setlocal enabledelayedexpansion
-FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a && echo. >> %environment%\apache2\conf\httpd.conf && echo ^Alias /!drive:~0,-2! "!drive:~0,-2!" >> %environment%\apache2\conf\httpd.conf^ && echo ^<Directory "!drive:~0,-2!"^> >> %environment%\apache2\conf\httpd.conf && echo ^Options Indexes FollowSymLinks >> %environment%\apache2\conf\httpd.conf^ && echo ^AllowOverride All >> %environment%\apache2\conf\httpd.conf^ && echo ^Require all granted >> %environment%\apache2\conf\httpd.conf^ && echo ^</Directory^> >> %environment%\apache2\conf\httpd.conf && echo. >> %environment%\apache2\conf\httpd.conf))
+for %%D in (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) do (
+    dir %%D:\ >nul 2>&1
+    if not errorlevel 1 (
+         echo. >> %environment%\apache2\conf\httpd.conf && echo ^Alias /%%D: "%%D:" >> %environment%\apache2\conf\httpd.conf^ && echo ^<Directory "%%D:"^> >> %environment%\apache2\conf\httpd.conf && echo ^Options Indexes FollowSymLinks >> %environment%\apache2\conf\httpd.conf^ && echo ^AllowOverride All >> %environment%\apache2\conf\httpd.conf^ && echo ^Require all granted >> %environment%\apache2\conf\httpd.conf^ && echo ^</Directory^> >> %environment%\apache2\conf\httpd.conf && echo. >> %environment%\apache2\conf\httpd.conf
+    )
+)
 setlocal disabledelayedexpansion
 
 taskkill /f /im httpd.exe
