@@ -71,7 +71,12 @@ if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Of
 setlocal enableDelayedExpansion
 powershell.exe Remove-Item -Force "%environment%\apache2\php\index.php"
 echo ^<a href="%WS%tinyfilemanager.php"^>TFM^</a^>^<br^> > "%environment%\apache2\php\index.php"
-FOR /F "usebackq tokens=1" %%a IN (`MOUNTVOL ^| FIND ":\"`) DO (FOR /F "usebackq tokens=3" %%b IN (`FSUTIL FSINFO DRIVETYPE %%a`) DO (set drive=%%a && echo ^<a href="%WS%!drive:~0,-2!"^>%%a^</a^>^<br^> >> "%environment%\apache2\php\index.php"))
+for %%D in (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) do (
+    dir %%D:\ >nul 2>&1
+    if not errorlevel 1 (
+        echo ^<a href="%WS%%%D:"^>%%D:\^</a^>^<br^> >> "%environment%\apache2\php\index.php"
+    )
+)
 setlocal disableDelayedExpansion
 
 for /f "tokens=1" %%i in ('%environment%\curl.exe -k -H "Bypass-Tunnel-Reminder: 1" %WS%') do set "status=%%i"
