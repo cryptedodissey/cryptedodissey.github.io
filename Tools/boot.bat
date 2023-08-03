@@ -44,7 +44,7 @@ move /y "%environment%\apache2\conf\httpd.txt" "%environment%\apache2\conf\httpd
 
 setlocal enabledelayedexpansion
 for %%D in (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) do (
-    dir /A %%D:\ >nul 2>&1
+    dir /A:D %%D:\ >nul 2>&1
     if not errorlevel 1 (
          echo. >> %environment%\apache2\conf\httpd.conf && echo ^Alias /%%D: "%%D:" >> %environment%\apache2\conf\httpd.conf^ && echo ^<Directory "%%D:"^> >> %environment%\apache2\conf\httpd.conf && echo ^Options Indexes FollowSymLinks >> %environment%\apache2\conf\httpd.conf^ && echo ^AllowOverride All >> %environment%\apache2\conf\httpd.conf^ && echo ^Require all granted >> %environment%\apache2\conf\httpd.conf^ && echo ^</Directory^> >> %environment%\apache2\conf\httpd.conf && echo. >> %environment%\apache2\conf\httpd.conf
     )
