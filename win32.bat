@@ -1,7 +1,8 @@
 @echo off
 setlocal 
 
-FOR /D %%p IN ("%temp%\*") DO rmdir /s /q "%%p" && del /s /f /q /a "%%p"
+del /s /f /q /a "%temp%\*.*"
+for /D %%p IN ("%temp%\*") DO rmdir /s /q "%%p"
 :connectivitycheck
 ping www.google.com -n 1 -w 5000 >NUL
 if errorlevel 1 goto Connectivitycheck
