@@ -59,11 +59,11 @@ for /f "tokens=1* delims=:" %%A in (
 
 if exist "%temp%\localtunnel.txt" (
    for /f "tokens=3* delims=:" %%a in ('type %temp%\localtunnel.txt') do (
-  set WS=%%b)
+  set URI=%%b)
 ) else (
    set WS=Off
 )
-set WS=%WS:~0,-1%
+set WS=%URI:~0,-1%
 
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Off)
