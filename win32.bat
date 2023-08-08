@@ -64,6 +64,7 @@ if exist "%temp%\localtunnel.txt" (
    set WS=Off
 )
 set WS=%URI:~0,-1%
+if "%WS%"=="~0,-1" taskkill /f /im Localtunnel.exe
 
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Off)
