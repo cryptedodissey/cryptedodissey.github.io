@@ -59,7 +59,7 @@ for /f "tokens=1* delims=:" %%A in (
 
 if exist "%temp%\localtunnel.txt" (
    for /f "tokens=3* delims=:" %%a in ('type %temp%\localtunnel.txt') do (
-  set URI=%%b && set WS=%URI:~0,-1%)
+  set WS=%%b)
 ) else (
    set WS=Off
 )
