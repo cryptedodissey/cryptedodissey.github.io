@@ -63,7 +63,7 @@ if exist "%temp%\localtunnel.txt" (
 ) else (
    set WS=Off
 )
-set WS=%WS~0,-1%
+set WS=%WS:~0,-1%
 
 tasklist /fi "imagename eq httpd.exe" | find /i "httpd.exe" > nul
 if not errorlevel 1 (echo.) else (taskkill /f /im "Localtunnel.exe" && set WS=Off)
