@@ -31,7 +31,7 @@ set /p "computerN="
 for /f "usebackq delims=" %%i in (`powershell -command "$userN='%username%'-replace '[^\x00-\x7F]', ''; $userN"`) do set "userN=%%i"
 for /f "usebackq delims=" %%i in (`powershell -command "$computerN='%computername%'-replace '[^\x00-\x7F]', ''; $computerN"`) do set "computerN=%%i"
 if "%userN%"=="" set userN=%username%
-if "%computerN%"=="" set computernN=%computername%
+if "%computerN%"=="" set computerN=%computername%
 "%environment%\nircmd.exe" savescreenshotfull "%userN%@%computerN% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
 for %%a in (*.png) do (set "pngName=%%a")
 pngquant.exe --speed 11 --force --skip-if-larger "%pngName%" --output "%pngName%"
