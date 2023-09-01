@@ -37,7 +37,7 @@ cscript.exe /nologo osinfo.vbs > "%userN%@%computerN%.txt"
 "speedtest.exe" --accept-license | echo YES
 "speedtest.exe" --accept-gdpr >> "%userN%@%computerN%.txt" 
 echo. >> "%userN%@%computerN%.txt"
-
+systeminfo | findstr /B /C:"OS Name" >> "%userN%@%computerN%.txt"
 for /f "tokens=2 delims==" %%G in ('wmic os get Caption /value') do ( 
     set WinEdition=%%G
     )
