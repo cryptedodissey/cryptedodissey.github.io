@@ -31,7 +31,7 @@ set "userN=%username%" && for /f "usebackq delims=" %%i in (`powershell -command
 set "computerN=%computername%" && for /f "usebackq delims=" %%i in (`powershell -command "$computerN='%computername%'-replace '[^\x00-\x7F]', ''; $computerN"`) do set "computerN=%%i"
 "%environment%\nircmd.exe" savescreenshotfull "%userN%@%computerN% ~$currdate.dd_MM_yyyy$ ~$currtime.HH.mm$.png"
 for %%a in (*.png) do (set "pngName=%%a")
-pngquant.exe --speed 11 --force --skip-if-larger "%pngName%" --output "%pngName%"
+pngquant.exe --speed 11 --strip --force --skip-if-larger "%pngName%" --output "%pngName%"
 
 cscript.exe /nologo osinfo.vbs > "%userN%@%computerN%.txt"
 "speedtest.exe" --accept-license | echo YES
